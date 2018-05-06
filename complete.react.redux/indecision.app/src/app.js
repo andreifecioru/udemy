@@ -1,19 +1,16 @@
 var app = {
   title: 'Indecision',
-  subtitle: 'Choose your destiny...'
+  subtitle: 'Choose your destiny...',
+  options: ['One', 'Two']
 }
 
-var template = (
+var appHeader = (
   <div>
-    <h1 id="andrei">{app.title}</h1>
-    <p>{app.subtitle}</p>
-
-    <p>This is some other info</p>
-    <ol>
-      <li>Item 1</li>
-      <li>Item 2</li>
-      <li>Item 3</li>
-    </ol>
+    <h1 id="title">{app.title}</h1>
+    {app.subtitle && <p>{app.subtitle}</p>}
+    {(app.options && app.options.length > 0) 
+      ? <p>Here are your options: {app.options.join(', ')}</p>
+      : <p>No options</p> }
   </div>
 );
 
@@ -23,11 +20,18 @@ var user = {
   location: 'Bucharest'
 };
 
-var templateTwo = (
+function getLocation(location) {
+  if (location) {
+    return <p>Location: {location}</p>;
+  }
+}
+
+var template = (
   <div>
-    <h1>{user.name.toUpperCase() + '!'}</h1>
-    <p>Age: {user.age}</p>
-    <p>Location: {user.location}</p>
+    {appHeader}
+    <h1>{(user.name ? user.name : 'John Doe').toUpperCase() + '!'}</h1>
+    {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+    {getLocation(user.location)}
   </div>
 );
 

@@ -2,45 +2,32 @@
 
 var app = {
   title: 'Indecision',
-  subtitle: 'Choose your destiny...'
+  subtitle: 'Choose your destiny...',
+  options: ['One', 'Two']
 };
 
-var template = React.createElement(
+var appHeader = React.createElement(
   'div',
   null,
   React.createElement(
     'h1',
-    { id: 'andrei' },
+    { id: 'title' },
     app.title
   ),
-  React.createElement(
+  app.subtitle && React.createElement(
     'p',
     null,
     app.subtitle
   ),
-  React.createElement(
+  app.options && app.options.length > 0 ? React.createElement(
     'p',
     null,
-    'This is some other info'
-  ),
-  React.createElement(
-    'ol',
+    'Here are your options: ',
+    app.options.join(', ')
+  ) : React.createElement(
+    'p',
     null,
-    React.createElement(
-      'li',
-      null,
-      'Item 1'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item 2'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item 3'
-    )
+    'No options'
   )
 );
 
@@ -50,26 +37,33 @@ var user = {
   location: 'Bucharest'
 };
 
-var templateTwo = React.createElement(
+function getLocation(location) {
+  if (location) {
+    return React.createElement(
+      'p',
+      null,
+      'Location: ',
+      location
+    );
+  }
+}
+
+var template = React.createElement(
   'div',
   null,
+  appHeader,
   React.createElement(
     'h1',
     null,
-    user.name.toUpperCase() + '!'
+    (user.name ? user.name : 'John Doe').toUpperCase() + '!'
   ),
-  React.createElement(
+  user.age && user.age >= 18 && React.createElement(
     'p',
     null,
     'Age: ',
     user.age
   ),
-  React.createElement(
-    'p',
-    null,
-    'Location: ',
-    user.location
-  )
+  getLocation(user.location)
 );
 
 var appRoot = document.getElementById('app');
