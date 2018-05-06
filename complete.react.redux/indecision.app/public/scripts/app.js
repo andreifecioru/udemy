@@ -1,64 +1,77 @@
-"use strict";
+'use strict';
+
+var app = {
+  title: 'Indecision',
+  subtitle: 'Choose your destiny...'
+};
 
 var template = React.createElement(
-  "div",
+  'div',
   null,
   React.createElement(
-    "h1",
-    { id: "andrei" },
-    "Andrei is really, trully the best!"
+    'h1',
+    { id: 'andrei' },
+    app.title
   ),
   React.createElement(
-    "p",
+    'p',
     null,
-    "This is some info"
+    app.subtitle
   ),
   React.createElement(
-    "p",
+    'p',
     null,
-    "This is some other info"
+    'This is some other info'
   ),
   React.createElement(
-    "ol",
+    'ol',
     null,
     React.createElement(
-      "li",
+      'li',
       null,
-      "Item 1"
+      'Item 1'
     ),
     React.createElement(
-      "li",
+      'li',
       null,
-      "Item 2"
+      'Item 2'
     ),
     React.createElement(
-      "li",
+      'li',
       null,
-      "Item 3"
+      'Item 3'
     )
   )
 );
 
+var user = {
+  name: 'Andrei',
+  age: 36,
+  location: 'Bucharest'
+};
+
 var templateTwo = React.createElement(
-  "div",
+  'div',
   null,
   React.createElement(
-    "h1",
+    'h1',
     null,
-    "Andrei Fecioru"
+    user.name.toUpperCase() + '!'
   ),
   React.createElement(
-    "p",
+    'p',
     null,
-    "Age: 36"
+    'Age: ',
+    user.age
   ),
   React.createElement(
-    "p",
+    'p',
     null,
-    "Location: Bucharest"
+    'Location: ',
+    user.location
   )
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
