@@ -1,10 +1,10 @@
-var app = {
+const app = {
   title: 'Indecision',
   subtitle: 'Choose your destiny...',
   options: ['One', 'Two']
 }
 
-var appHeader = (
+const appHeader = (
   <div>
     <h1 id="title">{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
@@ -14,7 +14,7 @@ var appHeader = (
   </div>
 );
 
-var user = {
+const user = {
   name: 'Andrei',
   age: 36,
   location: 'Bucharest'
@@ -26,7 +26,7 @@ function getLocation(location) {
   }
 }
 
-var template = (
+const template = (
   <div>
     {appHeader}
     <h1>{(user.name ? user.name : 'John Doe').toUpperCase() + '!'}</h1>
@@ -35,6 +35,5 @@ var template = (
   </div>
 );
 
-var appRoot = document.getElementById('app');
-
+const appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
