@@ -15,13 +15,9 @@ const typeDefs = `
 const resolvers = {
     Query: {
         title() { return 'Laptop' },
-
         price() { return 1999.99 },
-
         releaseYear() { return 2015 },
-
         rating() { return null },
-
         inStock() { return false }
     }
 }
