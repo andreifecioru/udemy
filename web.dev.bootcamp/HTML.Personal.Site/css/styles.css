@@ -1,0 +1,22 @@
+body {
+  background-color: #faf9f9;
+}
+
+hr {
+  border-style: dotted none none;
+  border-width: thick;
+  border-color: #add2c9;
+  width: 10%;
+}
+
+#profile-img {
+  height: 200px;
+}
+
+h1 {
+  color: #488b8f;
+}
+
+h3 {
+  color: #5ea3a3;
+}
