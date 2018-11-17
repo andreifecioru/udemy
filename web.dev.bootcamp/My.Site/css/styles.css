@@ -1,0 +1,80 @@
+body {
+  text-align: center;
+  margin: 0;
+  background: #f9f7f7;
+  font-family: montserrat, sans-serif;
+}
+
+h1, h2 {
+  color: #66BFBF;
+}
+
+h3, a {
+  color: #11999E;
+}
+
+.top-container {
+  background: #112d4e;
+  color: #dbe2ef;
+  margin: 0;
+}
+
+.clouds-and-title {
+  position: relative;
+  margin: 0 auto;
+  height: 350px;
+  width: 800px;
+}
+
+h2,h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.top-container h1 {
+  font-size: 5.652rem;
+  margin: 0px;
+  padding-top: 100px;
+  font-family: sacramento, sans-serif;
+}
+
+.top-container h2 {
+  font-size: 2.5rem;
+  font-family: montserrat, sans-serif;
+  font-weight: normal;
+}
+
+.top-cloud {
+  position: absolute;
+  right: 0px;
+  height: 200px;
+}
+
+.bottom-cloud {
+  position: absolute;
+  left: 30px;
+  top: 110px;
+  height: 200px;
+}
+
+.img-mountain {
+  width: 800px;
+}
+
+.top-container .underlined {
+  text-decoration: underline;
+}
+
+.middle-container {
+  padding-top: 50px;
+  background: #f9f7f7;
+}
+
+.profile > img {
+  border-radius: 100%;
+  border: solid 20px;
+  border-color: #3f72af55;
+}
+
+.bottom-container {
+  background: #dbe2ef;
+}
