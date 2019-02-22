@@ -1,0 +1,20 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "4.0.4"
+    id 'scala'
+}
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+
+dependencies {
+    implementation 'org.scala-lang:scala-library:2.12.8'
+    implementation "org.apache.hadoop:hadoop-client:$hadoop_version"
+
+    // Use MRUnit test framework
+    testImplementation 'org.apache.mrunit:mrunit:1.1.0:hadoop2'
+}
+
