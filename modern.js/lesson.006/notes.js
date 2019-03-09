@@ -9,3 +9,7 @@ console.log(notes)
 notes.forEach(function(item, idx) {
     console.log(`${idx}: ${item}`)
 })
+
+for (let i = notes.length - 1; i >= 0; i--) {
+    console.log(`${i}: ${notes[i]}`)
+}

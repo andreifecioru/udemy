@@ -12,3 +12,7 @@ todos.shift()
 todos.forEach(function(item, idx) { 
     console.log(`${idx + 1}. ${item}`)
 })
+
+for (let i = 0; i < todos.length; i++) {
+    console.log(`${i + 1}. ${todos[i]}`)
+}
