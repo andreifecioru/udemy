@@ -1,7 +1,7 @@
 const notes = ['Note 1', 'Note 2', 'Note 3']
 
+notes.unshift('Unshift: note 1', 'Unshift: note 2')
 console.log(notes)
 
-console.log(notes[0])
-console.log(notes[notes.length - 1])
-console.log(notes[notes.length - 2])
+notes.splice(2, 2, 'New note 1', 'New note 2')
+console.log(notes)

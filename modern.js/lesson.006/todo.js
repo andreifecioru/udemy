@@ -1,5 +1,12 @@
 const todos = ['eat', 'sleep', 'play', 'work', 'watch tv']
 
-console.log(`You have ${todos.length} todos.`)
-console.log(`Todo: ${todos[0]}`)
-console.log(`Todo: ${todos[todos.length -2]}`)
+// Delete 3rd item
+todos.splice(2, 1)
+
+// Add a new item @ the end
+todos.push('go outside')
+
+// Remove 1st item
+todos.shift()
+
+console.log(todos)
