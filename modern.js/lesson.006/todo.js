@@ -9,4 +9,6 @@ todos.push('go outside')
 // Remove 1st item
 todos.shift()
 
-console.log(todos)
+todos.forEach(function(item, idx) { 
+    console.log(`${idx + 1}. ${item}`)
+})

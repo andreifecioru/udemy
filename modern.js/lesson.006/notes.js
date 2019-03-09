@@ -5,3 +5,7 @@ console.log(notes)
 
 notes.splice(2, 2, 'New note 1', 'New note 2')
 console.log(notes)
+
+notes.forEach(function(item, idx) {
+    console.log(`${idx}: ${item}`)
+})
