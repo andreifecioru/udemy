@@ -1,18 +1,20 @@
-const todos = ['eat', 'sleep', 'play', 'work', 'watch tv']
+const todos = [
+  { text: "eat", completed: false },
+  { text: "play", completed: false },
+  { text: "work", completed: false },
+  { text: "watch tv", completed: false }
+];
 
-// Delete 3rd item
-todos.splice(2, 1)
+const deleteTodo = function(todos, text) {
+  const idx = todos.findIndex(function(todo) {
+    return todo.text.toLowerCase() === text.toLowerCase();
+  });
 
-// Add a new item @ the end
-todos.push('go outside')
+  if (idx >= 0) {
+    todos.splice(idx, 1);
+  }
+};
 
-// Remove 1st item
-todos.shift()
-
-todos.forEach(function(item, idx) { 
-    console.log(`${idx + 1}. ${item}`)
-})
-
-for (let i = 0; i < todos.length; i++) {
-    console.log(`${i + 1}. ${todos[i]}`)
-}
+deleteTodo(todos, "watch TV");
+deleteTodo(todos, "eat something");
+console.log(todos);

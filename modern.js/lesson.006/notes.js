@@ -1,31 +1,32 @@
 const notes = [
-    {
-        tile: 'My next trip',
-        body: 'I would like to go to Spain.'
-    },
-    {
-        tile: 'Habits to work on',
-        body: 'Exercise. Eat better'
-    },
-    {
-        tile: 'Office modification',
-        body: 'Get a new seat'
-    },
-    {}
-]
+  {
+    title: "My next trip",
+    body: "I would like to go to Spain."
+  },
+  {
+    title: "Habits to work on",
+    body: "Exercise. Eat better"
+  },
+  {
+    title: "Office modification",
+    body: "Get a new seat"
+  }
+];
 
-console.log(notes)
+// This is the same as Array#find()
+const findNote = function(notes, noteTitle) {
+  const idx = notes.findIndex(function(note, idx) {
+    return note.title.toLowerCase() === noteTitle.toLowerCase();
+  });
 
-// What counts is the object reference not the content
-console.log(notes.indexOf({}))  // false
+  return notes[idx];
+};
 
-// NOTE: obj1 === obj2 if they point to the
-// same object instance in memory (even if they have the same props)
+const findNote2 = function(notes, noteTitle) {
+  return notes.find(function(note, idx) {
+    return note.title.toLowerCase() === noteTitle.toLowerCase();
+  });
+};
 
-console.log('\n---------------------\n')
-
-// When searching by object content is Array#findIndex()
-let noteIdx = notes.findIndex(function (note, idx) {
-    return note.tile === 'Habits to work on'
-})
-console.log(noteIdx)
+console.log(findNote(notes, "habits to work on"));
+console.log(findNote2(notes, "office modification"));
