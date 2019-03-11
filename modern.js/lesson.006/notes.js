@@ -30,3 +30,18 @@ const findNote2 = function(notes, noteTitle) {
 
 console.log(findNote(notes, "habits to work on"));
 console.log(findNote2(notes, "office modification"));
+
+console.log("\n------------------\n");
+
+const findNotes = function(notes, query) {
+  const _query = query.toLowerCase();
+
+  return notes.filter(function(note, idx) {
+    const isTitleMatch = note.title.toLowerCase().includes(_query);
+    const isBodyMatch = note.body.toLowerCase().includes(_query);
+
+    return isTitleMatch || isBodyMatch;
+  });
+};
+
+console.log(findNotes(notes, "ne"));

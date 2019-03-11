@@ -1,7 +1,7 @@
 const todos = [
   { text: "eat", completed: false },
   { text: "play", completed: false },
-  { text: "work", completed: false },
+  { text: "work", completed: true },
   { text: "watch tv", completed: false }
 ];
 
@@ -18,3 +18,13 @@ const deleteTodo = function(todos, text) {
 deleteTodo(todos, "watch TV");
 deleteTodo(todos, "eat something");
 console.log(todos);
+
+console.log("\n----------------------\n");
+
+const getThingsToDo = function(todos) {
+  return todos.filter(function(todo, idx) {
+    return !todo.completed;
+  });
+};
+
+console.log(getThingsToDo(todos));
