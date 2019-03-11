@@ -1,15 +1,31 @@
-const notes = ['Note 1', 'Note 2', 'Note 3']
+const notes = [
+    {
+        tile: 'My next trip',
+        body: 'I would like to go to Spain.'
+    },
+    {
+        tile: 'Habits to work on',
+        body: 'Exercise. Eat better'
+    },
+    {
+        tile: 'Office modification',
+        body: 'Get a new seat'
+    },
+    {}
+]
 
-notes.unshift('Unshift: note 1', 'Unshift: note 2')
 console.log(notes)
 
-notes.splice(2, 2, 'New note 1', 'New note 2')
-console.log(notes)
+// What counts is the object reference not the content
+console.log(notes.indexOf({}))  // false
 
-notes.forEach(function(item, idx) {
-    console.log(`${idx}: ${item}`)
+// NOTE: obj1 === obj2 if they point to the
+// same object instance in memory (even if they have the same props)
+
+console.log('\n---------------------\n')
+
+// When searching by object content is Array#findIndex()
+let noteIdx = notes.findIndex(function (note, idx) {
+    return note.tile === 'Habits to work on'
 })
-
-for (let i = notes.length - 1; i >= 0; i--) {
-    console.log(`${i}: ${notes[i]}`)
-}
+console.log(noteIdx)
