@@ -45,3 +45,20 @@ const findNotes = function(notes, query) {
 };
 
 console.log(findNotes(notes, "ne"));
+
+console.log("\n----------------------\n");
+
+const sortNotes = function(notes) {
+  notes.sort(function(note, otherNote) {
+    const title = note.title.toLowerCase();
+    const otherTitle = otherNote.title.toLowerCase();
+
+    if (title < otherTitle) return -1;
+    if (title > otherTitle) return 1;
+
+    return 0;
+  });
+};
+
+sortNotes(notes)
+console.log(notes);

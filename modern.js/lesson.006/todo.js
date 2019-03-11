@@ -15,7 +15,7 @@ const deleteTodo = function(todos, text) {
   }
 };
 
-deleteTodo(todos, "watch TV");
+// deleteTodo(todos, "watch TV");
 deleteTodo(todos, "eat something");
 console.log(todos);
 
@@ -28,3 +28,13 @@ const getThingsToDo = function(todos) {
 };
 
 console.log(getThingsToDo(todos));
+
+console.log("\n----------------------\n");
+const sortTodos = function(todos) {
+  todos.sort(function(todo, otherTodo) {
+    return todo.completed - otherTodo.completed;
+  });
+};
+
+sortTodos(todos);
+console.log(todos);
