@@ -18,3 +18,8 @@ todos.forEach((todo, idx) => {
   $todo.textContent = todoText;
   $body.appendChild($todo);
 });
+
+const $button = document.querySelector("button");
+$button.addEventListener("click", e => {
+  console.log("Adding a new TODO item.");
+});

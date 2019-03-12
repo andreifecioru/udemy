@@ -13,22 +13,17 @@ const notes = [
   }
 ];
 
-// Matches only the first paragraph occurrence
-const paragraph = document.querySelector("p");
-console.log(paragraph);
+const $button = document.querySelector("button");
 
-// Match all paragraph occurrences
-const paragraphs = document.querySelectorAll("p");
-console.log(paragraphs);
-paragraphs.forEach(p => {
-  // p.remove();
-  // We can also change the paragraph text
-  // p.textContent = "******";
+// NOTE: using arrow function as event handler will
+// bind "this" to the window object.
+$button.addEventListener("click", e => {
+  console.log(this); // this points to window
 
-  console.log(p.textContent);
+  // However, the DOM element is available via event.target
+  e.target.textContent = "Clicked!";
 });
 
-// Add a new element
-const newParagraph = document.createElement("p");
-newParagraph.textContent = "This is a new paragraph";
-document.querySelector("body").appendChild(newParagraph);
+$button.addEventListener("mouseout", e => {
+  e.target.textContent = "Create Note";
+});
