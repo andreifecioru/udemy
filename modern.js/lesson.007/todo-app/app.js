@@ -1,11 +1,20 @@
-console.log("TODO app");
+const todos = [
+  { text: "eat", completed: false },
+  { text: "play", completed: false },
+  { text: "work", completed: true },
+  { text: "watch tv", completed: false }
+];
 
-const paragraphs = document.querySelectorAll("p");
+const incompleteTodos = todos.filter(p => !p.completed);
 
-// Remove all "p" tags that have "the" in their text
-// NOTE: "paragraphs" is a NoteList instance (not an array)
-Array.from(paragraphs)
-	.filter(p => p.textContent.includes("the"))
-	.forEach(p => p.remove());
+const $body = document.querySelector("body");
+const $summary = document.createElement("h3");
+$summary.textContent = `You have ${incompleteTodos.length} TODOs left.`;
+$body.appendChild($summary);
 
-
+todos.forEach((todo, idx) => {
+  const todoText = `${idx + 1}. ${todo.text}`;
+  const $todo = document.createElement("p");
+  $todo.textContent = todoText;
+  $body.appendChild($todo);
+});
