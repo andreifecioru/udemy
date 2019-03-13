@@ -13,17 +13,10 @@ const notes = [
   }
 ];
 
-const $button = document.querySelector("button");
-
-// NOTE: using arrow function as event handler will
-// bind "this" to the window object.
-$button.addEventListener("click", e => {
-  console.log(this); // this points to window
-
-  // However, the DOM element is available via event.target
-  e.target.textContent = "Clicked!";
+document.querySelector("button#create-note").addEventListener("click", e => {
+  console.log("Creating a new note");
 });
 
-$button.addEventListener("mouseout", e => {
-  e.target.textContent = "Create Note";
+document.querySelector("button#remove-all").addEventListener("click", e => {
+  document.querySelectorAll("p.note").forEach( note => note.remove())
 });
