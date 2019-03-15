@@ -18,5 +18,9 @@ document.querySelector("button#create-note").addEventListener("click", e => {
 });
 
 document.querySelector("button#remove-all").addEventListener("click", e => {
-  document.querySelectorAll("p.note").forEach( note => note.remove())
+  document.querySelectorAll("p.note").forEach(note => note.remove());
+});
+
+document.querySelector("input#filter-notes").addEventListener("input", e => {
+  console.log(e.target.value);
 });
