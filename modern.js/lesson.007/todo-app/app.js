@@ -8,20 +8,29 @@ const todos = [
 console.log("Andrei");
 
 const filters = {
-  searchText: ""
+  searchText: "",
+  hideCompleted: false
 };
 
-const renderTodos = function(todos) {
+const renderTodos = function(todos, filters) {
   const $todoArea = document.querySelector("div#todo-area");
 
   // remove all existing todos
   document.querySelector("div#todo-area").innerHTML = "";
 
-  const filteredTodos = todos.filter(todo =>
-    todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-  );
+  const filteredTodos = todos
+    .filter(todo =>
+      todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    )
+    .filter(todo => {
+      if (filters.hideCompleted) {
+        return !todo.completed;
+      }
 
-  const incompleteTodos = filteredTodos.filter(p => !p.completed);
+      return true;
+    });
+
+  const incompleteTodos = todos.filter(todo => !todo.completed);
 
   // add the new todos
   filteredTodos.forEach((todo, idx) => {
@@ -38,6 +47,8 @@ const renderTodos = function(todos) {
     incompleteTodos.length
   } TODOs left in progress.`;
   $todoArea.appendChild($summary);
+
+  document.querySelector("#hide-completes").checked = filters.hideCompleted
 };
 
 document.querySelector("#search-box").addEventListener("input", e => {
@@ -60,6 +71,11 @@ document.querySelector("#todo-form").addEventListener("submit", e => {
 
     renderTodos(todos, filters);
   }
+});
+
+document.querySelector("#hide-completed").addEventListener("change", e => {
+  filters.hideCompleted = e.target.checked;
+  renderTodos(todos, filters);
 });
 
 renderTodos(todos, filters);
