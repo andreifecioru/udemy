@@ -25,14 +25,18 @@ const renderTodos = function(todos) {
 
   // add the new todos
   filteredTodos.forEach((todo, idx) => {
-    const todoText = `${idx + 1}. ${todo.text} (${todo.completed ? "completed" : "in progress"})`;
+    const todoText = `${idx + 1}. ${todo.text} (${
+      todo.completed ? "completed" : "in progress"
+    })`;
     const $todo = document.createElement("p");
     $todo.textContent = todoText;
     $todoArea.appendChild($todo);
   });
 
   const $summary = document.createElement("h3");
-  $summary.textContent = `You have ${incompleteTodos.length} TODOs left in progress.`;
+  $summary.textContent = `You have ${
+    incompleteTodos.length
+  } TODOs left in progress.`;
   $todoArea.appendChild($summary);
 };
 
@@ -42,15 +46,20 @@ document.querySelector("#search-box").addEventListener("input", e => {
   renderTodos(todos, filters);
 });
 
-document.querySelector("button#add-todo").addEventListener("click", e => {
-  const $newTodoInput = document.querySelector("input#new-todo");
-  console.log("Adding a new TODO item.");
-  todos.push({
-    text: $newTodoInput.value,
-    completed: false
-  });
+document.querySelector("#todo-form").addEventListener("submit", e => {
+  e.preventDefault();
 
-  renderTodos(todos, filters);
+  const todoText = e.target.elements.newTodo.value;
+  e.target.elements.newTodo.value = "";
+
+  if (todoText != "") {
+    todos.push({
+      text: todoText,
+      completed: false
+    });
+
+    renderTodos(todos, filters);
+  }
 });
 
 renderTodos(todos, filters);

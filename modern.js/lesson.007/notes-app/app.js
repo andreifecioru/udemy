@@ -39,11 +39,16 @@ document.querySelector("button#create-note").addEventListener("click", e => {
   console.log("Creating a new note");
 });
 
-document.querySelector("button#remove-all").addEventListener("click", e => {
-  document.querySelectorAll("p.note").forEach(note => note.remove());
-});
-
 document.querySelector("#filter-notes").addEventListener("input", e => {
   filters.searchText = e.target.value;
   renderNotes(notes, filters);
+});
+
+document.querySelector("#notes-form").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const firstName = e.target.elements.firstName.value;
+  e.target.elements.firstName.value = "";
+
+  console.log(firstName);
 });
