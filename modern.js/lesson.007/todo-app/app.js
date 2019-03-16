@@ -5,38 +5,52 @@ const todos = [
   { text: "watch tv", completed: false }
 ];
 
-const incompleteTodos = todos.filter(p => !p.completed);
+console.log("Andrei");
 
-const $body = document.querySelector("body");
-const $summary = document.createElement("h3");
-$summary.textContent = `You have ${incompleteTodos.length} TODOs left.`;
-$body.appendChild($summary);
+const filters = {
+  searchText: ""
+};
 
-const refreshTodos = function(todos) {
+const renderTodos = function(todos) {
   const $todoArea = document.querySelector("div#todo-area");
 
   // remove all existing todos
-  document.querySelectorAll("div#todo-area > p").forEach(p => p.remove());
+  document.querySelector("div#todo-area").innerHTML = "";
+
+  const filteredTodos = todos.filter(todo =>
+    todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+  );
+
+  const incompleteTodos = filteredTodos.filter(p => !p.completed);
 
   // add the new todos
-  todos.forEach((todo, idx) => {
-    const todoText = `${idx + 1}. ${todo.text}`;
+  filteredTodos.forEach((todo, idx) => {
+    const todoText = `${idx + 1}. ${todo.text} (${todo.completed ? "completed" : "in progress"})`;
     const $todo = document.createElement("p");
     $todo.textContent = todoText;
     $todoArea.appendChild($todo);
   });
+
+  const $summary = document.createElement("h3");
+  $summary.textContent = `You have ${incompleteTodos.length} TODOs left in progress.`;
+  $todoArea.appendChild($summary);
 };
 
-const $button = document.querySelector("button#add-todo");
-const $newTodoInput = document.querySelector("input#new-todo");
-$button.addEventListener("click", e => {
+document.querySelector("#search-box").addEventListener("input", e => {
+  filters.searchText = e.target.value;
+
+  renderTodos(todos, filters);
+});
+
+document.querySelector("button#add-todo").addEventListener("click", e => {
+  const $newTodoInput = document.querySelector("input#new-todo");
   console.log("Adding a new TODO item.");
   todos.push({
     text: $newTodoInput.value,
     completed: false
   });
 
-  refreshTodos(todos);
+  renderTodos(todos, filters);
 });
 
-refreshTodos(todos);
+renderTodos(todos, filters);
