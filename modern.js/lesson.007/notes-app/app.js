@@ -52,3 +52,7 @@ document.querySelector("#notes-form").addEventListener("submit", e => {
 
   console.log(firstName);
 });
+
+document.querySelector("#filter-by").addEventListener("change", e => {
+  console.log(e.target.value)
+})
