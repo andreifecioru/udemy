@@ -1,83 +1,52 @@
-let todos = [];
+const todos = loadTodos();
 
 const filters = {
   searchText: "",
   hideCompleted: false
 };
 
-// Load data from local storage
-const todosJSON = localStorage.getItem("todos");
-if (todosJSON !== null) {
-  todos = JSON.parse(todosJSON);
-}
+// initial rendering of the todo list
+renderTodos(todos, filters);
 
-const renderTodos = function(todos, filters) {
-  const $todoArea = document.querySelector("div#todo-area");
 
-  // remove all existing todos
-  document.querySelector("div#todo-area").innerHTML = "";
-
-  const filteredTodos = todos
-    .filter(todo =>
-      todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-    )
-    .filter(todo => {
-      if (filters.hideCompleted) {
-        return !todo.completed;
-      }
-
-      return true;
-    });
-
-  const incompleteTodos = todos.filter(todo => !todo.completed);
-
-  // add the new todos
-  filteredTodos.forEach((todo, idx) => {
-    const todoText = `${idx + 1}. ${todo.text} (${
-      todo.completed ? "completed" : "in progress"
-    })`;
-    const $todo = document.createElement("p");
-    $todo.textContent = todoText;
-    $todoArea.appendChild($todo);
-  });
-
-  const $summary = document.createElement("h3");
-  $summary.textContent = `You have ${
-    incompleteTodos.length
-  } TODOs left in progress.`;
-  $todoArea.appendChild($summary);
-
-  document.querySelector("#hide-completed").checked = filters.hideCompleted;
-};
-
+// event-handler for filtering todos
 document.querySelector("#search-box").addEventListener("input", e => {
+  // update the filter value
   filters.searchText = e.target.value;
-
+  // re-render the todo list
   renderTodos(todos, filters);
 });
 
+// event-handler for adding a new todo (via the form)
 document.querySelector("#todo-form").addEventListener("submit", e => {
+  // intercept the "submit" event
   e.preventDefault();
 
+  // extract the data from the form
   const todoText = e.target.elements.newTodo.value;
   e.target.elements.newTodo.value = "";
 
   if (todoText != "") {
+    // update the todo list
     todos.push({
       text: todoText,
       completed: false
     });
 
     // save the data in local storage
-    localStorage.setItem("todos", JSON.stringify(todos));
+    saveTodos(todos)
 
+    // re-render the todo list
     renderTodos(todos, filters);
   }
 });
 
+// event-handler for the "hide-completed" checkbox
 document.querySelector("#hide-completed").addEventListener("change", e => {
+  // extract the checkbox state and update the filter
   filters.hideCompleted = e.target.checked;
+
+  // re-render the todo list
   renderTodos(todos, filters);
 });
 
-renderTodos(todos, filters);
