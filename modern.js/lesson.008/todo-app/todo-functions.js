@@ -8,12 +8,25 @@ const saveTodos = todos => {
 };
 
 const generateTodoDOM = (todo, idx) => {
+  const $todo = document.createElement("div")
+
+  const $checkbox = document.createElement("input")
+  $checkbox.setAttribute("type", "checkbox")
+
+  const $button = document.createElement("button")
+  $button.textContent = "x"
+
+  const $span = document.createElement("span")
   const todoText = `${idx + 1}. ${todo.text} (${
     todo.completed ? "completed" : "in progress"
   })`;
-  const $todo = document.createElement("p");
-  $todo.textContent = todoText;
-  document.querySelector("#todo-area").appendChild($todo);
+  $span.textContent = todoText;
+
+  $todo.appendChild($checkbox)
+  $todo.appendChild($span)
+  $todo.appendChild($button)
+
+  return $todo
 };
 
 const generateSummaryDOM = todos => {
@@ -21,7 +34,9 @@ const generateSummaryDOM = todos => {
   const incompleteTodos = todos.filter(todo => !todo.completed);
 
   const $summary = document.createElement("h3");
-  $summary.textContent = `You have ${ incompleteTodos.length } TODOs left in progress.`;
+  $summary.textContent = `You have ${
+    incompleteTodos.length
+  } TODOs left in progress.`;
 
   return $summary;
 };
@@ -45,7 +60,9 @@ const renderTodos = (todos, filters) => {
     });
 
   // add the new todos
-  filteredTodos.forEach(generateTodoDOM);
+  filteredTodos.forEach((todo, idx) => {
+    $todoArea.appendChild(generateTodoDOM(todo, idx));
+  });
 
   // add the summary section
   $todoArea.appendChild(generateSummaryDOM(todos));

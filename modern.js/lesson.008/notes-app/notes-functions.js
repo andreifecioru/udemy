@@ -7,9 +7,17 @@ const loadNotes = () => {
 const saveNotes = notes => localStorage.setItem("notes", JSON.stringify(notes));
 
 const generateNoteDOM = note => {
-  const $note = document.createElement("p");
+  const $note = document.createElement("div");
 
-  $note.textContent = note.title.length > 0 ? note.title : "New note";
+  const $button = document.createElement("button");
+  $button.textContent = "x";
+
+  const $span = document.createElement("span");
+  $span.textContent = note.title.length > 0 ? note.title : "New note";
+
+  $note.appendChild($span);
+  $note.appendChild($button);
+
   document.querySelector("#notes-area").appendChild($note);
 };
 
