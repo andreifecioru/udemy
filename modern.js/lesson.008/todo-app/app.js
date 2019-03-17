@@ -29,6 +29,7 @@ document.querySelector("#todo-form").addEventListener("submit", e => {
   if (todoText != "") {
     // update the todo list
     todos.push({
+      id: uuidv4(),
       text: todoText,
       completed: false
     });
