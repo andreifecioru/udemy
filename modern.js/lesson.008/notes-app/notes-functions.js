@@ -6,11 +6,23 @@ const loadNotes = () => {
 
 const saveNotes = notes => localStorage.setItem("notes", JSON.stringify(notes));
 
+const removeNote = id => {
+  const idx = notes.findIndex(note => note.id === id);
+  if (idx >= 0) {
+    notes.splice(idx, 1);
+  }
+};
+
 const generateNoteDOM = note => {
   const $note = document.createElement("div");
 
   const $button = document.createElement("button");
   $button.textContent = "x";
+  $button.addEventListener("click", () => {
+    removeNote(note.id);
+    saveNotes(notes);
+    renderNotes(notes, filters);
+  });
 
   const $span = document.createElement("span");
   $span.textContent = note.title.length > 0 ? note.title : "New note";

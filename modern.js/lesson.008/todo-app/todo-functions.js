@@ -7,26 +7,51 @@ const saveTodos = todos => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };
 
+const removeTodo = id => {
+  const idx = todos.findIndex(todo => todo.id === id);
+  if (idx >= 0) {
+    todos.splice(idx, 1);
+  }
+};
+
+const updateCompleteStatus = (id, status) => {
+  const todo = todos.find(todo => todo.id === id);
+  if (todo !== undefined) {
+    todo.completed = status;
+  }
+};
+
 const generateTodoDOM = (todo, idx) => {
-  const $todo = document.createElement("div")
+  const $todo = document.createElement("div");
 
-  const $checkbox = document.createElement("input")
-  $checkbox.setAttribute("type", "checkbox")
+  const $checkbox = document.createElement("input");
+  $checkbox.setAttribute("type", "checkbox");
+  $checkbox.checked = todo.completed;
+  $checkbox.addEventListener("change", e => {
+    updateCompleteStatus(todo.id, e.target.checked);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
-  const $button = document.createElement("button")
-  $button.textContent = "x"
+  const $button = document.createElement("button");
+  $button.textContent = "x";
+  $button.addEventListener("click", () => {
+    removeTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
-  const $span = document.createElement("span")
+  const $span = document.createElement("span");
   const todoText = `${idx + 1}. ${todo.text} (${
     todo.completed ? "completed" : "in progress"
   })`;
   $span.textContent = todoText;
 
-  $todo.appendChild($checkbox)
-  $todo.appendChild($span)
-  $todo.appendChild($button)
+  $todo.appendChild($checkbox);
+  $todo.appendChild($span);
+  $todo.appendChild($button);
 
-  return $todo
+  return $todo;
 };
 
 const generateSummaryDOM = todos => {
