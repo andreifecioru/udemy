@@ -1,4 +1,4 @@
-const notes = loadNotes();
+let notes = loadNotes();
 
 const filters = {
   searchText: ""
@@ -38,4 +38,11 @@ document.querySelector("#filter-notes").addEventListener("input", e => {
 // event handler for the sorting drop-down UI control
 document.querySelector("#sort-by").addEventListener("change", e => {
   console.log(e.target.value);
+});
+
+window.addEventListener("storage", e => {
+  if (e.key === "notes") {
+    notes = JSON.parse(e.newValue);
+    renderNotes(notes, filters);
+  }
 });
