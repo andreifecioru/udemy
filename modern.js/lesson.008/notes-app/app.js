@@ -9,18 +9,21 @@ renderNotes(notes, filters);
 
 // event-handler for creating a new note
 document.querySelector("button#create-note").addEventListener("click", e => {
-  // add a new note to the list of notes
-  notes.push({
+  // construct a new note
+  const newNote = {
     id: uuidv4(),
     title: "New note",
     body: ""
-  });
+  };
+
+  // add a new note to the list of notes
+  notes.push(newNote);
 
   // persist the new list of notes
   saveNotes(notes);
 
-  // render the modified list of notes
-  renderNotes(notes, filters);
+  // go to the "edit" page
+  location.assign(`./edit.html#${newNote.id}`);
 });
 
 // event-handler for filtering notes

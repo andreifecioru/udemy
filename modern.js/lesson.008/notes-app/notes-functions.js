@@ -24,10 +24,11 @@ const generateNoteDOM = note => {
     renderNotes(notes, filters);
   });
 
-  const $span = document.createElement("span");
-  $span.textContent = note.title.length > 0 ? note.title : "New note";
+  const $link = document.createElement("a");
+  $link.textContent = note.title.length > 0 ? note.title : "New note";
+  $link.setAttribute("href", `./edit.html#${note.id}`);
 
-  $note.appendChild($span);
+  $note.appendChild($link);
   $note.appendChild($button);
 
   document.querySelector("#notes-area").appendChild($note);
