@@ -34,7 +34,33 @@ const generateNoteDOM = note => {
   document.querySelector("#notes-area").appendChild($note);
 };
 
+const filterNotes = (notes, sortBy) => {
+  switch (sortBy) {
+    case "lastEdited":
+      console.log("Sorting by last edited")
+      notes.sort((n1, n2) => n2.updatedAt - n1.updatedAt);
+      break;
+    case "recentlyCreated":
+      console.log("Sorting by recently created")
+      notes.sort((n1, n2) => n2.createdAt - n1.createdAt);
+      break;
+    case "alphabetical":
+      console.log("Sorting by alphabetically")
+      notes.sort((n1, n2) => {
+        if (n1.title < n2.title) return -1;
+        if (n1.title > n2.title) return 1;
+        return 0;
+      });
+      break;
+    default:
+      console.log(`Unknown sorting order: ${sortBy}`);
+  }
+  return notes;
+};
+
 const renderNotes = (notes, filters) => {
+  notes = filterNotes(notes, filters.sortBy);
+
   const filteredNotes = notes.filter(note =>
     note.title.toLowerCase().includes(filters.searchText.toLowerCase())
   );

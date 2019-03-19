@@ -1,7 +1,8 @@
 let notes = loadNotes();
 
 const filters = {
-  searchText: ""
+  searchText: "",
+  sortBy: "lastEdited"
 };
 
 // initial rendering of the notes
@@ -9,11 +10,15 @@ renderNotes(notes, filters);
 
 // event-handler for creating a new note
 document.querySelector("button#create-note").addEventListener("click", e => {
+  const now = moment().valueOf();
+
   // construct a new note
   const newNote = {
     id: uuidv4(),
     title: "New note",
-    body: ""
+    body: "",
+    createdAt: now,
+    updatedAt: now
   };
 
   // add a new note to the list of notes
@@ -37,7 +42,8 @@ document.querySelector("#filter-notes").addEventListener("input", e => {
 
 // event handler for the sorting drop-down UI control
 document.querySelector("#sort-by").addEventListener("change", e => {
-  console.log(e.target.value);
+  filters.sortBy = e.target.value;
+  renderNotes(notes, filters);
 });
 
 window.addEventListener("storage", e => {
@@ -47,8 +53,10 @@ window.addEventListener("storage", e => {
   }
 });
 
-const birthDate = moment()
-birthDate.year(1981).month("June").date(24)
-console.log(birthDate.format("MMMM Do, YYYY"))
-console.log(birthDate.fromNow())
-
+const birthDate = moment();
+birthDate
+  .year(1981)
+  .month("June")
+  .date(24);
+console.log(birthDate.format("MMMM Do, YYYY"));
+console.log(birthDate.fromNow());
