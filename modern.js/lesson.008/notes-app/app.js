@@ -46,3 +46,9 @@ window.addEventListener("storage", e => {
     renderNotes(notes, filters);
   }
 });
+
+const birthDate = moment()
+birthDate.year(1981).month("June").date(24)
+console.log(birthDate.format("MMMM Do, YYYY"))
+console.log(birthDate.fromNow())
+
