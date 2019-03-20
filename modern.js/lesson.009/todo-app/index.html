@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>TODOs</title>
+  </head>
+  <body>
+    <h1>TODO App</h1>
+
+    <input id="search-box" type="text" placeholder="Search for notes">
+
+    <label>
+      <input id="hide-completed" type="checkbox"> Hide completed 
+    </label>
+
+    <div id="todo-area"></div>
+
+    <hr>
+
+    <form id="todo-form">
+      <input type="text" name="newTodo" placeholder="What else to do?">
+      <button>Add todo</button>
+    </form>
+
+    <script src="uuidv4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="todo-functions.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
