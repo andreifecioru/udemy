@@ -26,7 +26,7 @@ class AppState extends State<App> {
             print('Hello! $counter}');
           },
           tooltip: 'A button',
-          child: Icon(Icons.add),
+          child: Icon(Icons.play_arrow),
         ),
       )
     );
