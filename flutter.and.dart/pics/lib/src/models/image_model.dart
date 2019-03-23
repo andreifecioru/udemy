@@ -10,4 +10,9 @@ class ImageModel {
     title = parsedJson['title'];
     url = parsedJson['url'];
   }
+
+  @override
+  String toString() {
+    return 'ImageModel(id: $id, title: $title, url: $url)';
+  }
 }
