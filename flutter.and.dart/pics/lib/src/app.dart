@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http show get;
 
 import 'models/image_model.dart';
+import 'widgets/image_list.dart';
+
 
 class App extends StatefulWidget {
   @override
@@ -13,8 +15,10 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
-  static final String IMG_SERVICE_URL = 'https://jsonplaceholder.typicode.com/photos';
+  static final String imgServiceUrl = 'https://jsonplaceholder.typicode.com/photos';
   int counter = 1;
+
+  List<ImageModel> images = [];
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +27,7 @@ class AppState extends State<App> {
         appBar: AppBar(
           title: Text("Let's See Images!"),
         ),
-        body: Center(
-          child: Text('Counter value: $counter'),
-        ),
+        body: ImageList(images),
         floatingActionButton: FloatingActionButton(
           onPressed: fetchImage,
           tooltip: 'A button',
@@ -36,15 +38,28 @@ class AppState extends State<App> {
   }
 
   void fetchImage() {
-    http.get('$IMG_SERVICE_URL/$counter')
+    http.get('$imgServiceUrl/$counter')
     .then((response) {
       if (response.statusCode == 200) {
         var parsedJson = convert.jsonDecode(response.body);
         var imageModel = ImageModel.fromJson(parsedJson);
-        print(imageModel);
 
-        setState(() => counter ++);
+        addImage(imageModel);
+        incrementCounter();
       }
+    });
+  }
+
+  void incrementCounter() {
+    setState(() {
+      counter ++;
+    });
+  }
+
+  void addImage(ImageModel image) {
+    setState(() {
+      images.add(image);
+      print('We now have ${images.length} images');
     });
   }
 }
