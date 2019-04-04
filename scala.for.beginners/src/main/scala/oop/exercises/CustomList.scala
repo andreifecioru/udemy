@@ -4,23 +4,23 @@ import scala.annotation.tailrec
 
 object CustomList extends App {
 
-  val list = ListOfInts(1, 2, 3)
+  val list = MyList(1, 2, 3)
   println(list)
 
-  val anotherList = ListOfInts()
+  val anotherList = MyList()
   println(anotherList)
 
   // --------------------------
-  sealed trait Node {
+  sealed trait Node[+T] {
     def isEmpty: Boolean
-    def head: Int
-    def tail: Node
+    def head: T
+    def tail: Node[T]
 
-    def add(value: Int): ValueNode = new ValueNode(value, this)
+    def add[U >: T](value: U): ValueNode[U] = new ValueNode(value, this)
 
     override def toString: String = {
       @tailrec
-      def _helper(acc: String, node: Node): String = {
+      def _helper(acc: String, node: Node[T]): String = {
         if (node.isEmpty) acc
         else _helper(s"$acc, ${node.head}", node.tail)
       }
@@ -30,18 +30,18 @@ object CustomList extends App {
     }
   }
 
-  class ValueNode(override val head: Int, override val tail: Node) extends Node {
+  class ValueNode[T](override val head: T, override val tail: Node[T]) extends Node[T] {
     override def isEmpty: Boolean = false
   }
 
-  object NilNode extends Node {
+  object NilNode extends Node[Nothing] {
     override def isEmpty: Boolean = true
-    override def head: Int = throw new NoSuchElementException
-    override def tail: Node = throw new NoSuchElementException
+    override def head: Nothing = throw new NoSuchElementException
+    override def tail: Nothing = throw new NoSuchElementException
   }
 
-  object ListOfInts {
-    def apply: Node = NilNode
-    def apply(values: Int*): Node = values.foldLeft(NilNode.asInstanceOf[Node])(_.add(_))
+  object MyList {
+    def apply[T]: Node[T] = NilNode
+    def apply[T](values: T*): Node[T] = values.foldLeft(NilNode.asInstanceOf[Node[T]])(_.add(_))
   }
 }
