@@ -42,8 +42,8 @@ object CustomList extends App {
     def add[U >: T](value: U): ValueNode[U] = ValueNode(value, this)
 
     def addAll[U >: T](other: Node[U]): Node[U] = other match {
-      case NilNode => this
-      case ValueNode(h, t) => ValueNode(h, this).addAll(t)
+      case NilNode => other
+      case ValueNode(h, t) => ValueNode(h, t.addAll(other))
     }
 
     def filter(p: MyPredicate[T]): Node[T] = this match {
@@ -78,7 +78,7 @@ object CustomList extends App {
     override def isEmpty: Boolean = false
   }
 
-  object NilNode extends Node[Nothing] {
+  case object NilNode extends Node[Nothing] {
     override def isEmpty: Boolean = true
     override def head: Nothing = throw new NoSuchElementException
     override def tail: Nothing = throw new NoSuchElementException
@@ -86,7 +86,9 @@ object CustomList extends App {
 
   object MyList {
     def apply[T]: Node[T] = NilNode
-    def apply[T](values: T*): Node[T] = values.foldLeft(NilNode.asInstanceOf[Node[T]])(_.add(_))
+    def apply[T](values: T*): Node[T] =
+      if (values.isEmpty) NilNode
+      else ValueNode(values.head, MyList(values.tail:_*))
   }
 
   trait MyPredicate[-T] {
