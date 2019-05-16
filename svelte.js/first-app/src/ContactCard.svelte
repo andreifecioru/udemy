@@ -3,7 +3,6 @@
   export let userName;
   export let jobTitle;
   export let image;
-
 </script>
 
 <style>
@@ -63,11 +62,17 @@
 <div class="contact-card">
   <header>
     <div class="thumb">
-      <img src="{image}" alt="" />
+      <img src={image} alt="" />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
-      <h2>{jobTitle}</h2>
+      <!-- 
+        Treat this as HTML output 
+        (be careful not to expose yourself to XSS) 
+      -->
+      <h2>
+        {@html jobTitle}
+      </h2>
     </div>
   </header>
   <div class="description">
