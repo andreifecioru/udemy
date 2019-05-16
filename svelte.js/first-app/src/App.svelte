@@ -1,4 +1,7 @@
 <script>
+	// import nested components
+	import ContactCard from './ContactCard.svelte'
+
 	export let name;
 	export let age;
 
@@ -11,7 +14,7 @@
 	// reactive statements
 	$: console.log(`${name} is ${age} yeas old.`);
 
-	$: if (age % 10 == 0) {
+	$: if (age % 10 === 0) {
 		console.log('You are older!');
 	}
 
@@ -39,4 +42,11 @@
 	For a shortcut see below:
 -->
 <input type="text" bind:value="{name}">
+
+<!-- Use components like built-in markup elements.
+	NOTE: follow the camel-case naming convention for custom
+	components (this is how Svelte differentiates them
+	from the built-in variants).
+ -->
+<ContactCard />
 
