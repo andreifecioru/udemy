@@ -2,7 +2,7 @@
   // define the component's props
   export let userName;
   export let jobTitle;
-  export let image;
+  export let image; // https://images-na.ssl-images-amazon.com/images/I/51D0XxdvOeL._SX355_BO1,204,203,200_.jpg
 </script>
 
 <style>
@@ -23,6 +23,10 @@
   .thumb {
     width: 33%;
     height: 100%;
+  }
+
+  .thumb-placeholder {
+    background-color: #ccc;
   }
 
   img {
@@ -61,18 +65,15 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
+    <!-- 
+      Dynamic CSS classes.
+    -->
+    <div class="thumb" class:thumb-placeholder={!image}>
       <img src={image} alt="" />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
-      <!-- 
-        Treat this as HTML output 
-        (be careful not to expose yourself to XSS) 
-      -->
-      <h2>
-        {@html jobTitle}
-      </h2>
+      <h2>{jobTitle}</h2>
     </div>
   </header>
   <div class="description">
