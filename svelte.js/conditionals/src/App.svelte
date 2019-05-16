@@ -5,17 +5,38 @@
   let title = "";
   let image = "";
   let description = "";
-  let formState = 'empty';
+  let formState = "empty";
+
+  let createdContacts = [];
 
   const addContact = () => {
-    if (name.trim().length === 0 || 
-        title.trim().length === 0 || 
-        description.trim().length === 0 ||
-        image.trim().length === 0) {
-          formState = 'invalid'
+    if (
+      name.trim().length === 0 ||
+      title.trim().length === 0 ||
+      description.trim().length === 0 ||
+      image.trim().length === 0
+    ) {
+      formState = "invalid";
     } else {
-      formState = 'done';
+      formState = "done";
+      createdContacts = [
+        ...createdContacts,
+        {
+          id: Math.random(), // generate a unique ID
+          name: name,
+          jobTitle: title,
+          imageUrl: image,
+          desc: description
+        }
+      ];
     }
+  };
+
+  const deleteFirst = () => {
+    createdContacts = createdContacts.slice(1);
+  }
+  const deleteLast = () => {
+    createdContacts = createdContacts.slice(0, -1);
   }
 </script>
 
@@ -45,13 +66,28 @@
   </div>
 </div>
 
-
 <button on:click={addContact}>Add Contact Card</button>
+<button on:click={deleteFirst}>Delete first</button>
+<button on:click={deleteLast}>Delete last</button>
 
-{#if formState === 'done'}
-<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
-{:else if formState === 'invalid'}
-<p>Form is invalid</p>
+{#if formState === 'invalid'}
+  <p>Form is invalid</p>
 {:else}
-<p>Please enter some data.</p>
+  <p>Please enter some data.</p>
 {/if}
+
+<!-- We can also specify a list key (in parens) -->
+{#each createdContacts as contact, idx (contact.id)}
+  <h2>#{idx + 1}</h2>
+  <ContactCard
+    userName={contact.name}
+    jobTitle={contact.jobTitle}
+    description={contact.desc}
+    userImage={contact.imageUrl} />
+{:else}
+  <!-- 
+    "else" blocks are rendered when 
+    the collection is empty.
+  -->
+  <p>Please start adding some contacts.</p>
+{/each}
