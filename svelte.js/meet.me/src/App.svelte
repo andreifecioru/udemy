@@ -1,8 +1,10 @@
 <script>
   import Header from "./ui/Header.svelte";
   import MeetupGrid from "./meetups/MeetupGrid.svelte";
+  import TextInput from "./ui/TextInput.svelte";
+  import Button from "./ui/Button.svelte"
 
-  const meetups = [
+  let meetups = [
     {
       id: "m1",
       title: "Coding Bootcamp",
@@ -26,16 +28,87 @@
       contactEmail: "swim@test.com"
     }
   ];
+
+  let title = "";
+  let subtitle = "";
+  let description = "";
+  let address = "";
+  let imageUrl = "";
+  let email = "";
+
+  const addMeetup = () => {
+    console.log("Saving");
+
+    const newMeetup = {
+      id: Math.random.toString(),
+      title: title,
+      subtitle: subtitle,
+      description: description,
+      address: address,
+      imageUrl: imageUrl,
+      contactEmail: email
+    };
+
+    meetups = [newMeetup, ...meetups];
+  };
 </script>
 
 <style>
   main {
     margin-top: 5rem;
   }
+
+  form {
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
+  }
 </style>
 
 <Header />
 
 <main>
-  <MeetupGrid {meetups}/>
+  <form on:submit|preventDefault={addMeetup}>
+    <TextInput 
+      id="title"
+      label="Title"
+      value={title} 
+      on:input="{(e) => title = e.target.value}"/>
+    <TextInput 
+      id="subtitle"
+      label="Subtitle"
+      value={subtitle} 
+      on:input="{(e) => subtitle = e.target.value}"/>
+    <TextInput 
+      id="description"
+      label="Description"
+      value={description} 
+      on:input="{(e) => description = e.target.value}"/>
+    <TextInput 
+      id="description"
+      label="Description"
+      value={description} 
+      controlType="textarea" rows="3"
+      on:input="{(e) => description = e.target.value}"/>
+    <TextInput 
+      id="address"
+      label="Address"
+      value={address} 
+      on:input="{(e) => address = e.target.value}"/>
+    <TextInput 
+      id="imageUrl"
+      label="Image URL"
+      value={imageUrl} 
+      on:input="{(e) => imageUrl = e.target.value}"/>
+    <TextInput 
+      id="email"
+      label="E-amil"
+      value={email} 
+      inputType="email"
+      on:input="{(e) => email = e.target.value}"/>
+
+    <Button type="submit" caption="Save"/>
+  </form>
+
+  <MeetupGrid {meetups} />
 </main>
