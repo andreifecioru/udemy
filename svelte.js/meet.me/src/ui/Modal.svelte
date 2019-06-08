@@ -1,0 +1,65 @@
+<script>
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+
+  const onModalOk = event => {
+    dispatch("modalOk");
+  };
+
+  const onModalCancel = event => {
+    dispatch("modalCancel");
+  };
+</script>
+
+<style>
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+  }
+
+  .modal {
+    padding: 1rem;
+    position: fixed;
+    top: 10vh;
+    left: 10%;
+    width: 80%;
+    background: white;
+    border-radius: 5px;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    overflow: auto;
+  }
+
+  header {
+    border-bottom: 1px solid bisque;
+  }
+
+  footer {
+    border-top: 1px solid bisque;
+    padding: 1rem;
+  }
+</style>
+
+<div class="backdrop" on:click={onModalCancel} />
+<div class="modal">
+  <header>
+    <slot name="header" />
+  </header>
+
+  <div class="content">
+    <slot />
+  </div>
+
+  <footer>
+    <slot name="footer">
+      <button on:click={onModalCancel}>Cancel</button>
+      <button on:click={onModalOk}>Close</button>
+    </slot>
+  </footer>
+</div>

@@ -17,6 +17,10 @@
   const onFavouriteClick = event => {
     dispatch("toggleFavourite", { id: id });
   };
+
+  const onShowDetailsClick = event => {
+    dispatch("showDetails", { id: id });
+  };
 </script>
 
 <style>
@@ -75,13 +79,12 @@
   .content {
     height: 4rem;
   }
-
 </style>
 
 <article>
   <header>
     <h1>
-      {title}
+       {title}
       {#if isFavourite}
         <Badge>FAVOURITE</Badge>
       {/if}
@@ -96,13 +99,16 @@
     <p>{description}</p>
   </div>
   <footer>
-    <Button href="mailto:{contactEmail}" caption="Contact me" />
+    <Button href="mailto:{contactEmail}">Contact me</Button>
     <Button
-      is_favourite={isFavourite ? "yes" : "no"}
+      is_favourite={isFavourite ? 'yes' : 'no'}
       type="button"
-      caption="{isFavourite ? "Unfavourite" : "Favourite"}"
       mode="outline"
-      on:click={onFavouriteClick} />
-    <Button type="button" caption="Show details" />
+      on:click={onFavouriteClick}>
+      {isFavourite ? 'Unfavourite' : 'Favourite'}
+    </Button>
+    <Button type="button" caption="Show details" on:click={onShowDetailsClick}>
+      Show details
+    </Button>
   </footer>
 </article>

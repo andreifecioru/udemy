@@ -85,7 +85,7 @@
 </style>
 
 {#if href}
-  <a {href}>{caption}</a>
+  <a {href}><slot/></a>
 {:else}
-  <button class={mode} class:success="{is_favourite === "no"}" {type} on:click>{caption}</button>
+  <button class={mode} class:success="{is_favourite === "no"}" {type} on:click><slot/></button>
 {/if}

@@ -1,9 +1,14 @@
 <script>
   import { afterUpdate } from "svelte";
   import Header from "./ui/Header.svelte";
-  import MeetupGrid from "./meetups/MeetupGrid.svelte";
-  import TextInput from "./ui/TextInput.svelte";
   import Button from "./ui/Button.svelte";
+  import Modal from "./ui/Modal.svelte";
+  import MeetupGrid from "./meetups/MeetupGrid.svelte";
+  import EditMeetup from "./meetups/EditMeetup.svelte";
+
+  let showAddMeetupModal = false;
+  let showEditMeetupModal = false;
+  let editMeetupModalData = null;
 
   let meetups = [
     {
@@ -32,29 +37,57 @@
     }
   ];
 
-  let title = "";
-  let subtitle = "";
-  let description = "";
-  let address = "";
-  let imageUrl = "";
-  let email = "";
-  let isFavourite = false;
-
-  const addMeetup = () => {
+  const addMeetup = event => {
     console.log("Saving");
 
+    const data = event.detail;
+
     const newMeetup = {
-      id: Math.random.toString(),
-      title: title,
-      subtitle: subtitle,
-      description: description,
-      address: address,
-      imageUrl: imageUrl,
-      contactEmail: email,
-      isFavourite: isFavourite
+      id: Math.random().toString(),
+      title: data.title,
+      subtitle: data.subtitle,
+      description: data.description,
+      address: data.address,
+      imageUrl: data.imageUrl,
+      contactEmail: data.email,
+      isFavourite: data.isFavourite
     };
 
     meetups = [newMeetup, ...meetups];
+
+    closeAddMeetupModal();
+  };
+
+  const toggleAddMeetupModal = event => {
+    showAddMeetupModal = !showAddMeetupModal;
+  };
+
+  const closeAddMeetupModal = event => {
+    showAddMeetupModal = false;
+  };
+
+  const showMeetupDetails = event => {
+    const id = event.detail.id;
+    editMeetupModalData = meetups.find(m => m.id === id);
+    showEditMeetupModal = true;
+  };
+
+  const saveMeetup = event => {
+    console.log("Saving meetup...");
+
+    const data = event.detail;
+
+    const idx = meetups.findIndex(m => m.id === data.id);
+    let meetup = meetups[idx];
+    ({ ...meetup } = { ...data });
+    meetups[idx] = meetup;
+    meetups = meetups; // trigger DOM update
+
+    closeEditMeetupModal();
+  };
+
+  const closeEditMeetupModal = event => {
+    showEditMeetupModal = false;
   };
 
   const onToggleFavourite = event => {
@@ -75,58 +108,33 @@
     margin-top: 5rem;
   }
 
-  form {
-    width: 30rem;
-    max-width: 90%;
-    margin: auto;
+  .add-meetup-button {
+    margin-left: 1rem;
   }
 </style>
 
 <Header />
 
 <main>
-  <form on:submit|preventDefault={addMeetup}>
-    <TextInput
-      id="title"
-      label="Title"
-      value={title}
-      on:input={e => (title = e.target.value)} />
-    <TextInput
-      id="subtitle"
-      label="Subtitle"
-      value={subtitle}
-      on:input={e => (subtitle = e.target.value)} />
-    <TextInput
-      id="description"
-      label="Description"
-      value={description}
-      on:input={e => (description = e.target.value)} />
-    <TextInput
-      id="description"
-      label="Description"
-      value={description}
-      controlType="textarea"
-      rows="3"
-      on:input={e => (description = e.target.value)} />
-    <TextInput
-      id="address"
-      label="Address"
-      value={address}
-      on:input={e => (address = e.target.value)} />
-    <TextInput
-      id="imageUrl"
-      label="Image URL"
-      value={imageUrl}
-      on:input={e => (imageUrl = e.target.value)} />
-    <TextInput
-      id="email"
-      label="E-mail"
-      value={email}
-      inputType="email"
-      on:input={e => (email = e.target.value)} />
-
-    <Button type="submit" caption="Save" />
-  </form>
-
-  <MeetupGrid {meetups} on:toggleFavourite={onToggleFavourite} />
+  <div class="add-meetup-button">
+    <Button on:click={toggleAddMeetupModal}>Add meetup</Button>
+  </div>
+  {#if showAddMeetupModal}
+    <Modal on:modalCancel={closeAddMeetupModal}>
+      <h1 slot="header">Add new meetup</h1>
+      <EditMeetup {...meetups[0]} on:editMeetup={addMeetup} />
+      <div slot="footer" />
+    </Modal>
+  {/if}
+  {#if showEditMeetupModal}
+    <Modal on:modalCancel={closeEditMeetupModal}>
+      <h1 slot="header">Edit meetup</h1>
+      <EditMeetup {...editMeetupModalData} on:editMeetup={saveMeetup} />
+      <div slot="footer" />
+    </Modal>
+  {/if}
+  <MeetupGrid
+    {meetups}
+    on:toggleFavourite={onToggleFavourite}
+    on:showDetails={showMeetupDetails} />
 </main>
