@@ -2,7 +2,8 @@
   export let type = "button";
   export let caption;
   export let href = null;
-  export let mode = undefined;
+  export let mode = "";
+  export let is_favourite = null;
 </script>
 
 <style>
@@ -86,5 +87,5 @@
 {#if href}
   <a {href}>{caption}</a>
 {:else}
-  <button class={mode} {type}>{caption}</button>
+  <button class={mode} class:success="{is_favourite === "no"}" {type} on:click>{caption}</button>
 {/if}

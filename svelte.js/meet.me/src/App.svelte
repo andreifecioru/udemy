@@ -1,8 +1,9 @@
 <script>
+  import { afterUpdate } from "svelte";
   import Header from "./ui/Header.svelte";
   import MeetupGrid from "./meetups/MeetupGrid.svelte";
   import TextInput from "./ui/TextInput.svelte";
-  import Button from "./ui/Button.svelte"
+  import Button from "./ui/Button.svelte";
 
   let meetups = [
     {
@@ -14,7 +15,8 @@
       imageUrl:
         "https://3t7bol18ef963l8x6yzv7ja1-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/on-ground_coding_bootcamps_2.jpg",
       address: "27th Nerd Road, 2314 New York",
-      contactEmail: "code@test.com"
+      contactEmail: "code@test.com",
+      isFavourite: false
     },
 
     {
@@ -25,7 +27,8 @@
       imageUrl:
         "https://www.1life.co.uk/app/uploads/sites/35/2018/06/Downham-swim-09-800x400.jpg",
       address: "27th Nerd Road, 2314 New York",
-      contactEmail: "swim@test.com"
+      contactEmail: "swim@test.com",
+      isFavourite: false
     }
   ];
 
@@ -35,6 +38,7 @@
   let address = "";
   let imageUrl = "";
   let email = "";
+  let isFavourite = false;
 
   const addMeetup = () => {
     console.log("Saving");
@@ -46,11 +50,24 @@
       description: description,
       address: address,
       imageUrl: imageUrl,
-      contactEmail: email
+      contactEmail: email,
+      isFavourite: isFavourite
     };
 
     meetups = [newMeetup, ...meetups];
   };
+
+  const onToggleFavourite = event => {
+    console.log("Toggle favourite for id: " + event.detail.id);
+
+    const meetup = meetups.find(m => m.id === event.detail.id);
+    meetup.isFavourite = !meetup.isFavourite;
+    meetups = meetups; // trigger DOM update
+  };
+
+  afterUpdate(() => {
+    console.log("Dom updated");
+  });
 </script>
 
 <style>
@@ -69,46 +86,47 @@
 
 <main>
   <form on:submit|preventDefault={addMeetup}>
-    <TextInput 
+    <TextInput
       id="title"
       label="Title"
-      value={title} 
-      on:input="{(e) => title = e.target.value}"/>
-    <TextInput 
+      value={title}
+      on:input={e => (title = e.target.value)} />
+    <TextInput
       id="subtitle"
       label="Subtitle"
-      value={subtitle} 
-      on:input="{(e) => subtitle = e.target.value}"/>
-    <TextInput 
+      value={subtitle}
+      on:input={e => (subtitle = e.target.value)} />
+    <TextInput
       id="description"
       label="Description"
-      value={description} 
-      on:input="{(e) => description = e.target.value}"/>
-    <TextInput 
+      value={description}
+      on:input={e => (description = e.target.value)} />
+    <TextInput
       id="description"
       label="Description"
-      value={description} 
-      controlType="textarea" rows="3"
-      on:input="{(e) => description = e.target.value}"/>
-    <TextInput 
+      value={description}
+      controlType="textarea"
+      rows="3"
+      on:input={e => (description = e.target.value)} />
+    <TextInput
       id="address"
       label="Address"
-      value={address} 
-      on:input="{(e) => address = e.target.value}"/>
-    <TextInput 
+      value={address}
+      on:input={e => (address = e.target.value)} />
+    <TextInput
       id="imageUrl"
       label="Image URL"
-      value={imageUrl} 
-      on:input="{(e) => imageUrl = e.target.value}"/>
-    <TextInput 
+      value={imageUrl}
+      on:input={e => (imageUrl = e.target.value)} />
+    <TextInput
       id="email"
-      label="E-amil"
-      value={email} 
+      label="E-mail"
+      value={email}
       inputType="email"
-      on:input="{(e) => email = e.target.value}"/>
+      on:input={e => (email = e.target.value)} />
 
-    <Button type="submit" caption="Save"/>
+    <Button type="submit" caption="Save" />
   </form>
 
-  <MeetupGrid {meetups} />
+  <MeetupGrid {meetups} on:toggleFavourite={onToggleFavourite} />
 </main>
