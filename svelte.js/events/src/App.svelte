@@ -1,5 +1,6 @@
 <script>
   import Product from "./Product.svelte";
+  import Modal from "./Modal.svelte";
 
   const onProductAdd = event => {
     // event.detail contains the data attached to the event.
@@ -22,6 +23,17 @@
       price: 9999.99
     }
   ];
+
+  let showModal = false;
+  let closable = false;
+
+  const onShowModalClick = event => {
+    showModal = true;
+  };
+
+  const onModalClose = event => {
+    showModal = false;
+  };
 </script>
 
 <style>
@@ -38,3 +50,24 @@
     on:add-to-cart={onProductAdd}
     on:remove-from-cart={onProductRemove} />
 {/each}
+
+<button on:click={onShowModalClick}>Show modal</button>
+
+<!--
+		Bind the "isAgreed" slot prop with the "closable" local var.
+-->
+{#if showModal}
+  <Modal 
+    on:modal-close={onModalClose} 
+    let:isAgreed={closable}>
+
+    <!-- Target the "header" slot. -->
+    <h1 slot="header">Hello!</h1>
+    <p>It works!</p>
+
+    <!-- Target the "footer" slot -->
+    <div slot="footer">
+      <button on:click={onModalClose} disabled={!closable}>Close</button>
+    </div>
+  </Modal>
+{/if}
