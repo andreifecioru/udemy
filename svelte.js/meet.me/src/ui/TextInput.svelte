@@ -1,10 +1,10 @@
 <script>
-  export let controlType;
+  export let controlType = null;
   export let id;
   export let label;
-  export let rows;
+  export let rows = 3;
   export let value;
-  export let inputType;
+  export let inputType = 'text';
 </script>
 
 <style>
@@ -45,6 +45,6 @@
   {#if controlType === 'textarea'}
     <textarea {rows} {id} {value} on:input />
   {:else}
-    <input type="{inputType || 'text'}" {id} {value} on:input />
+    <input type="{inputType}" {id} {value} on:input />
   {/if}
 </div>
