@@ -1,9 +1,18 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import {
+    createEventDispatcher,
+    // Creation life-cycle events
+    onMount,
+    onDestroy,
+    // Update life-cycle events
+    beforeUpdate,
+    afterUpdate
+  } from "svelte";
 
   const dispatch = createEventDispatcher();
 
   let agreed = false;
+  let autoscroll = false;
 
   const onModalClose = event => {
     dispatch("modal-close");
@@ -12,6 +21,36 @@
   const onAgree = event => {
     agreed = true;
   };
+
+  onMount(() => {
+    // Usually this is where you load data from remote source
+    // (show a loading spinner, etc.)
+    console.log("On mount");
+  });
+
+  onDestroy(() => {
+    console.log("On destroy");
+  });
+
+  beforeUpdate(() => {
+    console.log("Before update");
+
+    // save state before the DOM gets updated
+    autoscroll = agreed;
+  });
+
+  afterUpdate(() => {
+    console.log("After update");
+
+    // load stored state after the DOM was updated
+    if (autoscroll) {
+      const modal = document.querySelector(".modal");
+      // scroll all the way to the bottom
+      modal.scrollTo(0, modal.scrollHeight);
+    }
+  });
+
+  console.log("Script area executed");
 </script>
 
 <style>
@@ -31,7 +70,7 @@
     top: 10vh;
     left: 10%;
     width: 80%;
-    max-height: 80vh;
+    max-height: 15vh;
     background: white;
     border-radius: 5px;
     z-index: 100;
@@ -54,6 +93,13 @@
   <header>
     <!-- This is a "named" slot. -->
     <slot name="header" />
+
+    {#if !agreed}
+      <div>
+        <p>You must agree with our terms of service</p>
+        <button on:click={onAgree}>Agree</button>
+      </div>
+    {/if}
   </header>
 
   <div class="content">
@@ -64,12 +110,6 @@
     <slot />
   </div>
   <footer>
-    {#if !agreed}
-      <div>
-        <p>You must agree with our terms of service</p>
-        <button on:click={onAgree}>Agree</button>
-      </div>
-    {/if}
 
     <!-- 
     This is a named slot with a default content. 
