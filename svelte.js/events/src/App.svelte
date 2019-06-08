@@ -1,14 +1,22 @@
 <script>
-	import Product from "./Product.svelte";
+  import Product from "./Product.svelte";
 
+  const onProductAdd = event => {
+    // event.detail contains the data attached to the event.
+    console.log("Product was added! Attached data: " + event.detail);
+  };
 
-	const onProductAdd = (event) => {
-		console.log("Clicked in App component.");
-	};
+  const onProductRemove = event => {
+    console.log("Product was deleted! Attached data: " + event.detail);
+  };
 </script>
 
 <style>
+
 </style>
 
-<Product productTitle="A book" on:click="{onProductAdd}"/>
-
+<!-- Handle custome events dispatched by the Product component -->
+<Product
+  productTitle="A book"
+  on:add-to-cart={onProductAdd}
+  on:remove-from-cart={onProductRemove} />
