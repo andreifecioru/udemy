@@ -42,16 +42,8 @@
 
     const data = event.detail;
 
-    const newMeetup = {
-      id: Math.random().toString(),
-      title: data.title,
-      subtitle: data.subtitle,
-      description: data.description,
-      address: data.address,
-      imageUrl: data.imageUrl,
-      contactEmail: data.email,
-      isFavourite: data.isFavourite
-    };
+    const newMeetup = {...event.detail};
+    newMeetup.id = Math.random().toString;
 
     meetups = [newMeetup, ...meetups];
 
@@ -122,7 +114,7 @@
   {#if showAddMeetupModal}
     <Modal on:modalCancel={closeAddMeetupModal}>
       <h1 slot="header">Add new meetup</h1>
-      <EditMeetup {...meetups[0]} on:editMeetup={addMeetup} />
+      <EditMeetup on:editMeetup={addMeetup} />
       <div slot="footer" />
     </Modal>
   {/if}

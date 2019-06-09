@@ -4,7 +4,15 @@
   export let label;
   export let rows = 3;
   export let value;
-  export let inputType = 'text';
+  export let inputType = "text";
+  export let isValid = true;
+  export let errorMsg = "";
+
+  let wasTouched = false;
+
+  const touch = event => {
+    wasTouched = true;
+  };
 </script>
 
 <style>
@@ -38,13 +46,27 @@
     width: 100%;
     margin: 0.25rem 0;
   }
+
+  .error {
+    background-color: rgb(233, 224, 224);
+  }
+
+  .error-message {
+    color: #e40763;
+    font-weight: bold;
+  }
 </style>
 
 <div class="form-control">
   <label for={id}>{label}</label>
   {#if controlType === 'textarea'}
-    <textarea {rows} {id} {value} on:input />
+    <textarea class:error="{!isValid && wasTouched}" {rows} {id} {value} on:input on:blur="{touch}"/>
   {:else}
-    <input type="{inputType}" {id} {value} on:input />
+    <input class:error="{!isValid && wasTouched}" type={inputType} {id} {value} on:input on:blur="{touch}"/>
   {/if}
+
+  {#if !isValid && wasTouched}
+    <p class="error-message">{errorMsg}</p>
+  {/if}
+
 </div>

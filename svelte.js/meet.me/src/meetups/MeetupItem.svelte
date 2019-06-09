@@ -83,8 +83,7 @@
 
 <article>
   <header>
-    <h1>
-       {title}
+    <h1> {title}
       {#if isFavourite}
         <Badge>FAVOURITE</Badge>
       {/if}
@@ -107,7 +106,7 @@
       on:click={onFavouriteClick}>
       {isFavourite ? 'Unfavourite' : 'Favourite'}
     </Button>
-    <Button type="button" caption="Show details" on:click={onShowDetailsClick}>
+    <Button type="button" on:click={onShowDetailsClick}>
       Show details
     </Button>
   </footer>
