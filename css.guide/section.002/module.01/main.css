@@ -1,0 +1,12 @@
+/* 
+  Styles defined externally are overridden by both
+  internally defined styles and by inline styles.
+*/
+section {
+  background: #ff1b68;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
