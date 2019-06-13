@@ -17,7 +17,17 @@ body {
   src: url('./fonts/Anton-Regular.ttf') format('truetype');
 }
 
-#product-overview {
+/* 
+  Select h1 elements that are (not necessarily direct) 
+  children of #product-overview (i.e. descendant selector).
+
+  There are 4 types of selector combinators:
+    - adjacent sibling: div.some-class + p {...}
+    - general sibling: div.some-class ~ p {...}
+    - direct child: div.some-class > p {...}
+    - descendant: div.some-class p {...}
+*/
+#product-overview h1 {
   background: #ff1b68;
   color: white;
   font-family: 'Anton', sans-serif;
