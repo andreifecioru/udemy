@@ -1,22 +1,37 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>uHost</title>
     <link rel="shortcut icon" href="favicon.png" />
+    <!-- 
+      Internal CSS definitions.
+
+      NOTE: styles defined here override externally defined styles
+      but can be overridden by inline style.
+     -->
+    <style>
+      section {
+        background: #ff1b68;
+        color: white;
+      }
+    </style>
+
+    <!--
+      You can have multiple style elements 
+      (will be evaluated in order they appear). 
+    -->
+    <style>
+      h1 {
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
     <main>
-      <!-- 
-        Inline styling applied directly on the HTML tag 
-        (not really recommended) 
-
-        NOTE: this level of styling overrides all other styles 
-        (in <style> or externally defined).
-      -->
-      <section style="background: #ff1b68; color: white;">
+      <section>
         <h1>Get the freedom you deserve!</h1>
       </section>
     </main>
