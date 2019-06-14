@@ -72,6 +72,39 @@ main {
   padding: 8px 16px;
   width: 100%;
 }
+/* 
+  NOTE: we need to set the vertical-align both on this element 
+  and its sibling (the .main-nav). 
+  
+  This means that they will be aligned based on their middle axes.
+*/
+.main-header > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main-header__logo {
+  color: #0e4f1f;
+  font-weight: bold;
+  font-size: 30px;
+  /* Remove the underline from the anchor element. */
+  text-decoration: none;
+}
+
+.main-nav {
+  display: inline-block;
+  /* Compute values dynamically using calc(). */
+  width: calc(100% - 100px);
+  text-align: right;
+  vertical-align: middle;
+}
+
+.main-nav__items {
+  padding: 0;
+  margin: 0;
+  /* Remove the bullets from the list. */
+  list-style: none;
+}
 
 /*
   For inline elements (like spans and anchors) you cannot set 
@@ -91,20 +124,4 @@ main {
   padding: 10px;
 }
 
-.main-nav__items {
-  padding: 0;
-  margin: 0;
-  /* Remove the bullets from the list. */
-  list-style: none;
-}
 
-.main-nav {
-  display: inline-block;
-  /* Compute values dynamically using calc(). */
-  width: calc(100% - 60px);
-  text-align: right;
-}
-
-.main-header > div {
-  display: inline-block;
-}
