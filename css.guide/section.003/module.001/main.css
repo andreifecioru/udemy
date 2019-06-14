@@ -67,7 +67,44 @@ main {
   color: #2ddf5c;
 }
 
+.main-header {
+  background: #2ddf5c;
+  padding: 8px 16px;
+  width: 100%;
+}
 
-/* h1 {
-    font-family: sans-serif;
-} */
+/*
+  For inline elements (like spans and anchors) you cannot set 
+  vertical padding or vertical margin props until you change the display prop 
+  (to something like block or inline-block).
+
+  Also width and height props have no effect on inline elements.
+
+  NOTE: 
+    - vertical padding still pushes out the border (just not the other elements).
+    - you can use the line-height prop to control the vertical spacing of inline elements.
+
+*/
+.main-nav__item {
+  color: red;
+  display: inline-block;
+  padding: 10px;
+}
+
+.main-nav__items {
+  padding: 0;
+  margin: 0;
+  /* Remove the bullets from the list. */
+  list-style: none;
+}
+
+.main-nav {
+  display: inline-block;
+  /* Compute values dynamically using calc(). */
+  width: calc(100% - 60px);
+  text-align: right;
+}
+
+.main-header > div {
+  display: inline-block;
+}
