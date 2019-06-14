@@ -111,9 +111,45 @@ body {
   outline: none;
 }
 
-/* h1 {
-    font-family: sans-serif;
-} */
+.features {
+  margin-top: 50px;
+  /* 
+    W/o the padding we get collapsing margins with the 
+    section title element.
+  */
+  padding: 16px;
+  background: #ff1b68;
+}
+
+.features > .section-title {
+  color: white;
+  margin: 32px;
+}
+
+.features > ul {
+  text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.features > ul > li {
+  display: inline-block;
+  width: 30%;
+  color: white;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.features > ul > li > div {
+  width: 150px;
+  height: 150px;
+  background: #ccc;
+  display: inline-block;
+  border: 3px black solid;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
 
 .main-header {
   width: 100%;
