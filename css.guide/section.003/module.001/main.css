@@ -73,10 +73,11 @@ main {
   width: 100%;
 }
 /* 
-  NOTE: we need to set the vertical-align both on this element 
-  and its sibling (the .main-nav). 
-  
-  This means that they will be aligned based on their middle axes.
+  We need to set the vertical-align both on this element 
+  and its sibling (the .main-nav) to make sure they are properly 
+  aligned.
+
+  NOTE: vertical-align only applies to inline elements (and table cells).
 */
 .main-header > div {
   display: inline-block;
@@ -122,6 +123,41 @@ main {
   color: red;
   display: inline-block;
   padding: 10px;
+  font-weight: bold;
 }
 
+.main-nav__item > a {
+  text-decoration: none;
+  color: #0e4f1f;
+  padding-bottom: 5px; 
+}
 
+.main-nav__item > a::after {
+  content: " (Link)";
+  color: red;
+  font-weight: bold;
+}
+
+/* 
+  Using some pseudo classes.
+  NOTE: you can group selectors.
+ */
+.main-nav__item > a:hover,
+.main-nav__item > a:active {
+  color: white;
+  border-bottom: 5px solid white;
+}
+
+.main-nav__item--cta > a {
+  color: white;
+  background: red;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.main-nav__item--cta > a:hover,
+.main-nav__item--cta > a:active {
+  color: red;
+  background: white;
+  border: none;
+}
