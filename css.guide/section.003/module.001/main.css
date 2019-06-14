@@ -1,0 +1,44 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+
+  /* Remove the browser's default margins. */
+  margin: 0;
+}
+
+#product-overview {
+  background: #ff1b68;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 20px;
+
+
+  /*
+      The above is a shorthand for:
+
+      border-width: 5px;
+      border-color: black;
+      border-style: solid;
+    */
+}
+
+.section-title {
+  /*
+    The top-margin of this element is collapsed into the bottom-margin of 
+    #product-overview (the larger one wins).
+
+    Also the margin of this element goes outside of it's parent bounds
+    The parent has no top margin, but the top margin of this element overflows
+    to become the top margin of the parent.
+  */
+  margin: 30px;
+  color: #2ddf5c;
+}
+
+#product-overview h1 {
+  color: white;
+  font-family: 'Anton', sans-serif;
+}
+
+/* h1 {
+    font-family: sans-serif;
+} */
