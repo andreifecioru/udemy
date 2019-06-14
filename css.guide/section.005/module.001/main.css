@@ -10,7 +10,7 @@ body {
 #product-overview {
   background: url("freedom.jpg");
   width: 100%;
-  height: 528px;
+  height: 400px;
   padding: 10px;
 }
 
@@ -76,6 +76,39 @@ body {
   padding: 4px 8px;
   width: 80%;
   margin: 16px auto;
+}
+
+.plan button {
+  color:white;
+  background: #0e4f1f;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid #0e4f1f;
+  border-radius: 5px; 
+
+  /* 
+    Short-hand for all font styles. 
+
+    Here we get rid of the browser default styling of buttons.
+  */
+  font: inherit;
+  font-weight: bold;
+  
+  /* Set the hand cursor on hover. */
+  cursor: pointer;
+}
+
+.plan button:hover {
+  background: white;
+  color: #0e4f1f;
+}
+
+.plan button:focus {
+  /* 
+    Get rid of the border (outline) applied by the browser when the 
+    button is focused.
+  */
+  outline: none;
 }
 
 /* h1 {
