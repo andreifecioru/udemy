@@ -1,0 +1,50 @@
+section div {
+  background: lightgray;
+  border: 2px solid gray;
+}
+
+#task-1 div,
+#task-2 div {
+  padding: 2em 4em;
+  margin: 3em;
+}
+
+/* TASK 4 
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+#task-1 {
+  height: 100%;
+}
+
+#task-1 div {
+  height: 100%;
+} 
+*/
+
+#task-5 div {
+  height: 300px;
+  width: 50%;
+}
+
+#task-6 .box {
+  height: 300px;
+  display: inline-block;
+  width: 40%;
+
+}
+
+/* TASK 7
+ #task-6 .box:first-child {
+  visibility: hidden;
+} 
+*/
+
+#task-6 .box:last-child:hover {
+  background: gray;
+  color: white;
+}
