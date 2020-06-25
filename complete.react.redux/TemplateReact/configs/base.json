@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+      "sourceMap": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "target": "es6"
+  }
+}

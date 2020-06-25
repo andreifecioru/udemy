@@ -1,0 +1,12 @@
+{
+  "extends": "./configs/base",
+  "compilerOptions": {
+      "outDir": "./dist/frontend",
+      "jsx": "react",
+      "importHelpers": true,
+      "lib": [
+        "dom",
+        "es2015"
+      ]
+  }
+}
