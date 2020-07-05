@@ -1,0 +1,41 @@
+main.weather {
+  width: 40vw;
+  margin: 1vh auto;
+  font-family: sans-serif;
+  div.title {
+    text-align: center;
+    font-size: xx-large;
+    margin: 2rem 0;
+  }
+
+  form {
+    input[type="text"] {
+      width: 100%;
+      display: block;
+      border: 1px solid lightblue;
+      padding: .5rem .25rem;
+      margin-bottom: 1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      display: block;
+      color:blue;
+      border: 1px solid blue;
+      background-color: white;
+      border-radius: 0;
+      font-family: sans-serif;
+      padding: .5rem 0;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: lightblue;
+      }
+    }
+  }
+}
