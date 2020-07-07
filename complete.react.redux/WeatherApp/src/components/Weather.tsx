@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { WeatherForm, WeatherFormData } from "./WeatherForm";
 import { WeatherInfo } from "./WeatherInfo";
 import { fetchWeatherData, IWeatherData } from "../api/openWeatherMap";
-
-import "../styles/weather.scss";
+import { Main } from "./Main";
 
 export interface WeatherState {
   location?: string;
@@ -47,15 +46,15 @@ export class Weather extends Component<{}, WeatherState> {
 
   render() {
     return (
-      <main className="weather">
-        <div className="title">Get Weather Info</div>
+      <Main>
+        <h1 className="text-center">Get Weather Info</h1>
         <WeatherForm onUpdateFormData={this.onFormUpdate}/>
         <WeatherInfo 
           location={this.state.location}
           temp={this.state.temp}
           isLoading={this.state.isLoading}
         />
-      </main>
+      </Main>
     );
   }
 }

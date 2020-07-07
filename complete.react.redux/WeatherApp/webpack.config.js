@@ -1,17 +1,40 @@
 const { resolve } = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 
 const isDevelopment = true;
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: [
+    "./src/index.tsx"
+  ],
 
   output: {
-    filename: "main.js",
+    filename: "index.js",
     path: resolve(__dirname, "dist", "public")
+  },
+
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace("@", "")}`;
+          },
+        },
+      },
+    },
   },
 
   mode: "development",
@@ -39,18 +62,31 @@ module.exports = {
       },
 
       {
+        test: /\.css$/i,
+        loader: [
+          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: isDevelopment
+            }
+          }
+        ]
+      },
+
+      {
         test: /\.module\.s(a|c)ss$/,
         loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: true,
               sourceMap: isDevelopment
             }
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: isDevelopment
             }
@@ -62,22 +98,29 @@ module.exports = {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
         loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
+          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: isDevelopment
             }
           }
         ]
-      }
-    ]
-  },
+      },
 
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "images"
+            }
+          }
+        ]
+      }      
+    ]
   },
 
   plugins: [
@@ -86,16 +129,14 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
-    }),
-
-    new CopyPlugin({
-      patterns: [
-        { from: resolve(__dirname, "node_modules", "react", "umd", "react.development.js") },
-        { from: resolve(__dirname, "node_modules", "react-dom", "umd", "react-dom.development.js") }
-      ]
+      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
     })
+  ],
 
-  ]
+  devServer: {
+    historyApiFallback: true,
+    contentBase: "./",
+    hot: true
+  }
 }

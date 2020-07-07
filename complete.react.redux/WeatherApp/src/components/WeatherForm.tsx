@@ -38,7 +38,7 @@ export class WeatherForm  extends Component<WeatherFormProps, {}> {
     return (
       <form onSubmit={onSubmitHandler}>
         <input type="text" placeholder="Enter city name" ref="city"/>
-        <button type="submit">Get Weather</button>
+        <button type="submit" className="button expanded hollow">Fetch Weather</button>
       </form>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { ErrorModal } from "./ErrorModal";
+
 export interface WeatherInfoProps {
   location?: string;
   temp?: number;
@@ -13,14 +15,15 @@ export class WeatherInfo extends Component<WeatherInfoProps, {}> {
     const { isLoading, location, temp } = this.props;
 
     function renderMessage() {
-      let message = <p>Please specify a location.</p>;
+      let message = <p className="text-center">Please specify a location.</p>;
       if (isLoading) {
-        message = <p>Fetching weather data...</p>;
+        message = <p className="text-center">Fetching weather data...</p>;
       } else if (location) {
         if (temp !== undefined) {
-          message = <p>It's {temp} in {location}.</p>;
+          message = <p className="text-center">It's {temp} in {location}.</p>;
         } else {
-          message = <p>Failed to fetch weather data for location {location}</p>;
+          console.log(">>> DEBUG: check 1");
+          message = <ErrorModal message="{`City not found: ${location}`}"/>
         }
       }
 

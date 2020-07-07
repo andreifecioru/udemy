@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import "../styles/about.scss"
+import { Main } from "./Main";
 
 export class About extends Component<{}, {}> {
   render() {
     return (
-      <main className="about">
+      <Main>
         <h1>Add content here</h1>
-      </main>
+      </Main>
     );
   }
 }
