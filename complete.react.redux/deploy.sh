@@ -6,7 +6,9 @@ main() {
 
   echo "Deploying ${app_dir} to ${remote}"
 
-  git push ${remote} $(git subtree split --prefix ${app_dir} master):master --force
+  pushd ..
+  git push ${remote} $(git subtree split --prefix complete.react.redux/${app_dir} master):master --force
+  popd
 }
 
 main $@
