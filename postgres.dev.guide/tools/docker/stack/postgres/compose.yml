@@ -1,0 +1,14 @@
+version: '2.4'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    container_name: postgres
+    restart: always
+    hostname: pg-box
+    environment:
+      POSTGRES_PASSWORD: study
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+

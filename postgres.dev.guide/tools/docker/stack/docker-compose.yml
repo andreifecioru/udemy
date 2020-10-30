@@ -1,0 +1,12 @@
+version: '2.4'
+
+services:
+  postgres:
+    network_mode: host
+    extends:
+      file: postgres/compose.yml
+      service: postgres
+    volumes:
+      - ../../../data:/var/lib/postgresql/data
+
+
