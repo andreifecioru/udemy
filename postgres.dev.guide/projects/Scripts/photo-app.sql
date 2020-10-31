@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;
 
@@ -31,3 +32,25 @@ VALUES
     ('http://radu/img_001.jpg', 2),
     ('http://maria/img_001.jpg', 3),
     ('http://dumitru/img_001.jpg', 4);
+    
+-- since COMMENTS is a keyword, it is best to quote the 'comments' identifier
+CREATE TABLE IF NOT EXISTS "comments" (
+    id SERIAL PRIMARY KEY,
+    contents VARCHAR(400),
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    photo_id INTEGER REFERENCES photos(id) ON DELETE CASCADE
+);
+
+INSERT INTO "comments" (contents, user_id, photo_id)
+VALUES
+    ('Radu > Andrei: Great photo!', 2, 1),
+    ('Andrei > Andrei: That was a day to remember...', 1, 1),
+    ('Dumitru > Andrei: Wish I were there!', 4, 1),    
+    ('Maria > Andrei: When was this?', 3, 2),
+    ('Radu > Andrei: This was nice...', 2, 2),
+    ('Andrei > Radu: Lucky you!', 1, 3),
+    ('Maria > Radu: Beautiful weather!', 3, 3),
+    ('Dumitru > Maria: Cool!', 4, 4),
+    ('Andrei > Maria: Best photo ever!', 1, 4),
+    ('Radu > Dumitru: Nice outfit!', 2, 5),
+    ('Andrei > Dumitru: Where did you buy that?', 1, 5);
