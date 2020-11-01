@@ -1,4 +1,4 @@
--- Run photo-app.sql first to seed the DB with data
+-- Run data/photo-app.sql first to seed the DB with data
 
 SELECT * FROM users;
 SELECT * FROM photos;

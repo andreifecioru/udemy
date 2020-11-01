@@ -1,4 +1,4 @@
--- Run photo-app.sql first to seed the DB with data
+-- Run data/photo-app.sql first to seed the DB with data
 
 -- For a visual description of various types of join
 -- see docs/cheatsheat.joins.pdf
