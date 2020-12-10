@@ -1,0 +1,6 @@
+.season-display.winter > i {
+    color: blue;
+}
+.season-display.summer > i {
+    color: orange;
+}
