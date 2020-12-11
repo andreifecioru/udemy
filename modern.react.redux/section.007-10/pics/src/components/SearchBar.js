@@ -10,12 +10,7 @@ class SearchBar extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    console.log(`[SearchBar] Submit: ${this.state.searchTerm}`);
     this.props.onSubmit(this.state.searchTerm);
-  }
-
-  componentDidUpdate() {
-    console.log(`State updated: ${JSON.stringify(this.state)}`);
   }
 
   render() {
