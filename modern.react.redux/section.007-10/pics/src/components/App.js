@@ -1,11 +1,12 @@
 import React from "react";
 
-import SearchBar from "./SearchBar";
 import Unsplash from "../api/Unsplash";
+import SearchBar from "./SearchBar";
+import ImageList from "./ImageList";
 
 class App extends React.Component {
   state = {
-    imageURLs: [],
+    images: [],
   };
 
   onSearchSubmit = async (searchTerm) => {
@@ -15,19 +16,21 @@ class App extends React.Component {
       },
     });
 
-    const imgURLs = response.data.results.map((result) => result.urls.thumb);
-    this.setState({ imageURLs: imgURLs });
+    const images = response.data.results.map((result) => (
+      {
+        id: result.id, 
+        url: result.urls.regular,
+        description: result.description,
+      }
+    ));
+    this.setState({ images: images });
   };
-
-  componentDidUpdate() {
-    this.state.imageURLs.forEach((imgURL) => console.log(imgURL));
-  }
 
   render() {
     return (
       <div className="ui container" style={{ marginTop: "2em" }}>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        Found {this.state.imageURLs.length} images.
+        <ImageList images={this.state.images} />
       </div>
     );
   }
