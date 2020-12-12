@@ -1,22 +1,21 @@
 import React from "react";
 
+import "./ImageList.css";
+import ImageCard from "./ImageCard";
+
 class ImageList extends React.Component {
   static defaultProps = {
     images: [],
   };
 
   renderImages() {
-    return this.props.images.map(({id, url, description}) => {
-      return (
-        <div className="ui container" key={id}>
-          <img className="ui rounded image" src={url} alt={description} />
-        </div>
-      );
+    return this.props.images.map(({ id, url, description }) => {
+      return <ImageCard key={id} url={url} description={description} />;
     });
   }
 
   render() {
-    return <div className="ui segment">{this.renderImages()}</div>;
+    return <div className="ui segment image-list">{this.renderImages()}</div>;
   }
 }
 
