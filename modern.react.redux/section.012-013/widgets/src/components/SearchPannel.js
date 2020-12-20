@@ -16,7 +16,6 @@ const SearchPannel = (props) => {
 
   const onSearchFormChange = useCallback(
     (term) => {
-      console.log(`We are searching for ${term}`);
       setSearchTerm(term);
     },
     [setSearchTerm]

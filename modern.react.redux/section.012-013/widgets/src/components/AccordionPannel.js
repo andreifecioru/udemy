@@ -31,7 +31,6 @@ const AccordionPannel = ({ items }) => {
   return (
     <div className="ui container">
       <div className="ui styled accordion">{renderedItems}</div>
-      <p>Active item: {activeItem ? activeItem.title : ""}</p>
     </div>
   );
 };
