@@ -13,7 +13,8 @@
 #define SEC_10_EX_01            OFF
 #define SEC_10_EX_02            OFF
 #define SEC_10_CHALLENGE_01     OFF
-#define SEC_10_ASSIGN_01        ON
+#define SEC_10_ASSIGN_01        OFF
+#define SEC_11_LECTURE_102      ON
 
 #include "lectures.h"
 

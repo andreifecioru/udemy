@@ -15,4 +15,7 @@ add_executable(cpp_beginner_to_beyond
         section_09/challenge_01.h section_09/challenge_01.cpp
         section_10/exercise_01.h section_10/exercise_01.cpp
         section_10/exercise_02.h section_10/exercise_02.cpp
-        section_10/challenge_01.h section_10/challenge_01.cpp section_10/assignment_01.h section_10/assignment_01.cpp)
+        section_10/challenge_01.h section_10/challenge_01.cpp 
+        section_10/assignment_01.h section_10/assignment_01.cpp
+        section_11/lecture_102.h section_11/lecture_102.cpp
+)

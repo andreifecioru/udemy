@@ -3,8 +3,10 @@
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
-namespace section10_assign_01 {
+
+namespace section_10_assign_01 {
     using namespace std;
 
     static void show_pyramid(const string& in_str) {

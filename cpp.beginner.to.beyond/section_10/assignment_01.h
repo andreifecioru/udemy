@@ -1,8 +1,10 @@
 #ifndef CPP_BEGINNER_TO_BEYOND_ASSIGNMENT_01_H
 #define CPP_BEGINNER_TO_BEYOND_ASSIGNMENT_01_H
 
-namespace section10_assign_01 {
-    int run();
+namespace section_10_assign_01 {
+
+int run();
+
 }
 
-#endif //CPP_BEGINNER_TO_BEYOND_ASSIGNMENT_01_H
+#endif  //CPP_BEGINNER_TO_BEYOND_ASSIGNMENT_01_H
