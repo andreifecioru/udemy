@@ -66,4 +66,15 @@ using section_10_assign_01::run;
 using section_11_lecture_102::run;
 #endif
 
+#if SEC_12_LECTURE_123 == ON
+#include "section_12/lecture_123.h"
+using section_12_lecture_123::run;
+#endif
+
+#if SEC_12_CHALLENGE_01 == ON
+#include "section_12/challenge_01.h"
+using section_12_challenge_01::run;
+#endif
+
+
 #endif //CPP_BEGINNER_TO_BEYOND_LECTURES_H

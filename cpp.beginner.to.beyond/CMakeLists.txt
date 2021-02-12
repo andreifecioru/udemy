@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
-project(cpp_beginner_to_beyond)
+
+project(cpp_beginner_to_beyond C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -18,4 +19,5 @@ add_executable(cpp_beginner_to_beyond
         section_10/challenge_01.h section_10/challenge_01.cpp 
         section_10/assignment_01.h section_10/assignment_01.cpp
         section_11/lecture_102.h section_11/lecture_102.cpp
-)
+        section_12/lecture_123.h section_12/lecture_123.cpp
+        section_12/challenge_01.h section_12/challenge_01.cpp)

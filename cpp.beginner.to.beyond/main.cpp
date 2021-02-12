@@ -14,10 +14,22 @@
 #define SEC_10_EX_02            OFF
 #define SEC_10_CHALLENGE_01     OFF
 #define SEC_10_ASSIGN_01        OFF
-#define SEC_11_LECTURE_102      ON
+#define SEC_11_LECTURE_102      OFF
+#define SEC_12_LECTURE_123      OFF
+#define SEC_12_CHALLENGE_01     ON
 
 #include "lectures.h"
 
+#include <iostream>
+
+namespace {
+    void cleanup() {
+        std::cout << "Cleaning up..." << std::endl;
+    }
+}
+
 int main() {
+    std::atexit(cleanup);
+
     return run();
 }
