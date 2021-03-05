@@ -18,7 +18,8 @@
 #define SEC_12_LECTURE_123      OFF
 #define SEC_12_CHALLENGE_01     OFF
 #define SEC_13_CHALLENGE_01     OFF
-#define SEC_14_EXTRA_01         ON
+#define SEC_14_EXTRA_01         OFF
+#define SEC_14_CHALLENGE_01     ON
 
 #include "lectures.h"
 
