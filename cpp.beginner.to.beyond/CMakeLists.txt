@@ -20,4 +20,9 @@ add_executable(cpp_beginner_to_beyond
         section_10/assignment_01.h section_10/assignment_01.cpp
         section_11/lecture_102.h section_11/lecture_102.cpp
         section_12/lecture_123.h section_12/lecture_123.cpp
-        section_12/challenge_01.h section_12/challenge_01.cpp)
+        section_12/challenge_01.h section_12/challenge_01.cpp
+        section_13/challenge_01/challenge_01.h section_13/challenge_01/challenge_01.cpp
+        section_13/challenge_01/Movie.h section_13/challenge_01/Movies.cpp section_13/challenge_01/Movies.h
+        section_14/extra_01/extra_01.h section_14/extra_01/extra_01.cpp
+        section_14/extra_01/Vector2D.cpp section_14/extra_01/Vector2D.h
+)
