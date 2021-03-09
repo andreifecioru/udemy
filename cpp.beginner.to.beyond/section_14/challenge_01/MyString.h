@@ -8,6 +8,7 @@ class MyString {
     std::size_t m_size{0};
 
     friend std::ostream& operator<<(std::ostream& os, const MyString& rhs);
+    friend std::istream& operator>>(std::istream& is, MyString& rhs);
 
 public:
     MyString() {
@@ -47,5 +48,5 @@ public:
     MyString& operator*=(int times);
 
     MyString& operator++();
-    MyString operator++(int);
+    MyString operator++(int) &;
 };

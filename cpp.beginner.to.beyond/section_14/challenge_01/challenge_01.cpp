@@ -50,6 +50,14 @@ namespace section_14_challenge_01 {
         MyString str8 {"andrei"};
         std::cout << "++str8: " << ++str8 << std::endl;
 
+        std::cout << "\n\n======================\n\n";
+        MyString str9 { 4 };
+
+        std::cout << "Enter a value for str9: ";
+        std::cin >> str9;
+
+        std::cout << "str9: " << str9 << std::endl;
+
         return EXIT_SUCCESS;
     }
 }
