@@ -96,6 +96,11 @@ using section_14_challenge_01::run;
 using section_15_challenge_01::run;
 #endif
 
+#if SEC_16_CHALLENGE_01 == ON
+#include "section_16/challenge_01/challenge_01.h"
+using section_16_challenge_01::run;
+#endif
+
 
 
 #endif //CPP_BEGINNER_TO_BEYOND_LECTURES_H

@@ -31,4 +31,9 @@ add_executable(cpp_beginner_to_beyond
         section_15/challenge_01/Account.cpp section_15/challenge_01/Account.h
         section_15/challenge_01/SavingsAccount.cpp section_15/challenge_01/SavingsAccount.h
         section_15/challenge_01/CheckingAccount.cpp section_15/challenge_01/CheckingAccount.h
-        section_15/challenge_01/TrustAccount.cpp section_15/challenge_01/TrustAccount.h)
+        section_15/challenge_01/TrustAccount.cpp section_15/challenge_01/TrustAccount.h
+        section_16/challenge_01/challenge_01.h section_16/challenge_01/challenge_01.cpp
+        section_16/challenge_01/Account.cpp section_16/challenge_01/Account.h
+        section_16/challenge_01/SavingsAccount.cpp section_16/challenge_01/SavingsAccount.h
+        section_16/challenge_01/CheckingAccount.cpp section_16/challenge_01/CheckingAccount.h
+        section_16/challenge_01/TrustAccount.cpp section_16/challenge_01/TrustAccount.h section_16/challenge_01/Printable.cpp section_16/challenge_01/Printable.h)
