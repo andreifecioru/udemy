@@ -4,6 +4,10 @@ project(cpp_beginner_to_beyond C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(BOOST_VERSION 1.7)
+find_package(Boost ${BOOST_VERSION})
+include_directories(${Boost_INCLUDE_DIR})
+
 add_executable(cpp_beginner_to_beyond
         main.cpp lectures.h
         section_06/exercise_01.cpp section_06/exercise_01.h
@@ -36,4 +40,6 @@ add_executable(cpp_beginner_to_beyond
         section_16/challenge_01/Account.cpp section_16/challenge_01/Account.h
         section_16/challenge_01/SavingsAccount.cpp section_16/challenge_01/SavingsAccount.h
         section_16/challenge_01/CheckingAccount.cpp section_16/challenge_01/CheckingAccount.h
-        section_16/challenge_01/TrustAccount.cpp section_16/challenge_01/TrustAccount.h section_16/challenge_01/Printable.cpp section_16/challenge_01/Printable.h)
+        section_16/challenge_01/TrustAccount.cpp section_16/challenge_01/TrustAccount.h
+        section_16/challenge_01/Printable.cpp section_16/challenge_01/Printable.h
+        section_17/challenge_01/challenge_01.h section_17/challenge_01/challenge_01.cpp section_17/challenge_01/IntValue.h)
