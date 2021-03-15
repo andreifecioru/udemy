@@ -2,14 +2,8 @@
 
 #include <iostream>
 
-namespace section_15_challenge_01 {
+namespace section_18_challenge_01 {
     std::ostream& operator<<(std::ostream& os, const TrustAccount& account) {
-        os << "[ Trust account: " << account.m_name
-           << " | balance: " << account.m_balance
-           << " , interest rate: " << account.m_interestRate
-           << " , bonus: " << account.m_bonus
-           << " , remaining withdrawals: " << account.m_remainingWithdrawals
-           << " ]";
         return os;
     }
 
@@ -18,13 +12,23 @@ namespace section_15_challenge_01 {
         return SavingsAccount::deposit(amount);
     }
 
-    bool TrustAccount::withdraw(double amount) {
+    void TrustAccount::withdraw(double amount) {
         double maxWithdrawAmount = m_balance * s_MaxWithdrawPercent / 100.0;
         if (m_remainingWithdrawals > 0 && (amount < maxWithdrawAmount)) {
             --m_remainingWithdrawals;
             return SavingsAccount::withdraw(amount);
         }
+    }
 
-        return false;
+    void TrustAccount::print(std::ostream &os) const {
+        os.precision(2);
+        os << std::fixed;
+
+        os << "[ Trust account: " << m_name
+           << " | balance: " << m_balance
+           << " , interest rate: " << m_interestRate
+           << " , bonus: " << m_bonus
+           << " , remaining withdrawals: " << m_remainingWithdrawals
+           << " ]";
     }
 }

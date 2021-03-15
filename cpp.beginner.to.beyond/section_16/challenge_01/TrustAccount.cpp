@@ -9,14 +9,14 @@ namespace section_16_challenge_01 {
 
     bool TrustAccount::deposit(double amount) {
         amount = (amount >= s_BonusThreshold) ? amount + m_bonus : amount;
-        return Account::deposit(amount);
+        return SavingsAccount::deposit(amount);
     }
 
     bool TrustAccount::withdraw(double amount) {
         double maxWithdrawAmount = m_balance * s_MaxWithdrawPercent / 100.0;
         if (m_remainingWithdrawals > 0 && (amount < maxWithdrawAmount)) {
             --m_remainingWithdrawals;
-            return Account::withdraw(amount);
+            return SavingsAccount::withdraw(amount);
         }
 
         return false;

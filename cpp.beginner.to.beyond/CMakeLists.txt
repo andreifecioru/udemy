@@ -42,4 +42,11 @@ add_executable(cpp_beginner_to_beyond
         section_16/challenge_01/CheckingAccount.cpp section_16/challenge_01/CheckingAccount.h
         section_16/challenge_01/TrustAccount.cpp section_16/challenge_01/TrustAccount.h
         section_16/challenge_01/Printable.cpp section_16/challenge_01/Printable.h
-        section_17/challenge_01/challenge_01.h section_17/challenge_01/challenge_01.cpp section_17/challenge_01/IntValue.h)
+        section_17/challenge_01/challenge_01.h section_17/challenge_01/challenge_01.cpp section_17/challenge_01/IntValue.h
+        section_18/challenge_01/challenge_01.h section_18/challenge_01/challenge_01.cpp
+        section_18/challenge_01/Account.cpp section_18/challenge_01/Account.h
+        section_18/challenge_01/SavingsAccount.cpp section_16/challenge_01/SavingsAccount.h
+        section_18/challenge_01/CheckingAccount.cpp section_18/challenge_01/CheckingAccount.h
+        section_18/challenge_01/TrustAccount.cpp section_18/challenge_01/TrustAccount.h
+        section_18/challenge_01/Printable.cpp section_18/challenge_01/Printable.h
+        section_18/challenge_01/IllegalBalanceException.h section_18/challenge_01/InsufficientFundsException.h)
