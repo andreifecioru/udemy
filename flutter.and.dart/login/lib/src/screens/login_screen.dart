@@ -50,10 +50,16 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget submitBtn() {
-    return RaisedButton(
-      color: Colors.blue,
-      textColor: Colors.white,
-      child: Text('Submit'),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.blue
+      ),
+      child: Text(
+        'Submit',
+        style: TextStyle(
+          color: Colors.white
+        ),
+      ),
       onPressed: onSubmitPressed,
     );
   }

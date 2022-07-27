@@ -65,8 +65,8 @@ class Deck {
 }
 
 class Card {
-  String rank;
-  String suit;
+  String? rank;
+  String? suit;
 
   Card({this.rank, this.suit});
 

@@ -35,14 +35,14 @@ class _DicePageState extends State<DicePage> {
         children: <Widget>[
           Expanded(
 //          flex: 2,
-            child: FlatButton(
+            child: TextButton(
               child: Image.asset('images/dice$leftDiceNumber.png'),
               onPressed: _onDicePressed,
             ),
           ),
           Expanded(
 //          flex: 1,
-            child: FlatButton(
+            child: TextButton(
               child: Image.asset('images/dice$rightDiceNumber.png'),
               onPressed: _onDicePressed,
             ),

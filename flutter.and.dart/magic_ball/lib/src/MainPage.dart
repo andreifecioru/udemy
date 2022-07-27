@@ -14,7 +14,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FlatButton(
+      child: TextButton(
         child: Image.asset('images/ball$_number.png'),
         onPressed: _nextAnswer,
       ),

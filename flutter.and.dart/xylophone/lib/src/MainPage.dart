@@ -35,8 +35,10 @@ class KeyNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: FlatButton(
-        color: color,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          primary: color
+        ),
         child: SizedBox(
           width: double.infinity,
         ),
