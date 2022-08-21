@@ -6,9 +6,14 @@ SELECT * FROM photos;
 SELECT * FROM photos WHERE user_id = 1;
 
 -- basic joining of 2 tables
-SELECT username, url
-FROM photos JOIN users
-ON photos.user_id = users.id;
+SELECT 
+	username, url
+FROM 
+	photos 
+JOIN 
+	users
+ON 
+	photos.user_id = users.id;
 
 -- cannot insert a photo referencing a non-existent user
 INSERT INTO photos (url, user_id)

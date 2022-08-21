@@ -1,30 +1,32 @@
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS users;
+CREATE SCHEMA IF NOT EXISTS ecommerce AUTHORIZATION postgres;
 
-CREATE TABLE IF NOT EXISTS users (
+DROP TABLE IF EXISTS ecommerce.orders;
+DROP TABLE IF EXISTS ecommerce.products;
+DROP TABLE IF EXISTS ecommerce.users;
+
+CREATE TABLE IF NOT EXISTS ecommerce.users (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR,
   last_name VARCHAR
 );
-CREATE TABLE IF NOT EXISTS products (
+CREATE TABLE IF NOT EXISTS ecommerce.products (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
   department VARCHAR,
   price INTEGER,
   weight INTEGER
 );
-CREATE TABLE IF NOT EXISTS orders (
+CREATE TABLE IF NOT EXISTS ecommerce.orders (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
-  product_id INTEGER REFERENCES products(id),
+  user_id INTEGER REFERENCES ecommerce.users(id),
+  product_id INTEGER REFERENCES ecommerce.products(id),
   paid BOOLEAN
 );
 
 
-INSERT INTO users (first_name, last_name) 
+INSERT INTO ecommerce.users (first_name, last_name) 
 VALUES 
-    ('Iva', 'Lindgren'),
+  ('Iva', 'Lindgren'),
 	('Ignatius', 'Johns'),
 	('Jannie', 'Boehm'),
 	('Neal', 'Wehner'),
@@ -76,7 +78,7 @@ VALUES
 	('Mathilde', 'Eichmann');
 
 
-INSERT INTO products (name, department, price, weight)
+INSERT INTO ecommerce.products (name, department, price, weight)
 VALUES
     ('Practical Fresh Shirt', 'Toys', 876.00, 3),
 	('Gorgeous Steel Towels', 'Outdoors', 412.00, 16),
@@ -180,9 +182,9 @@ VALUES
 	('Intelligent Cotton Gloves', 'Home', 447.00, 29);
 
 
-INSERT INTO orders (user_id, product_id, paid)
+INSERT INTO ecommerce.orders (user_id, product_id, paid)
 VALUES
-    (41, 100, true),
+  (41, 100, true),
 	(27, 99, false),
 	(50, 72, false),
 	(24, 81, true),

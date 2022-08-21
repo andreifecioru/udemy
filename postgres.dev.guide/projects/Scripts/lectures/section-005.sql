@@ -2,7 +2,8 @@
 
 -- basic grouping.
 -- NOTE: we can only select columns that are part of the GROUP BY statement
---       or some aggregation function.
+--       or some aggregation function. Most of the times grouping is used in 
+--       conjunction with aggregation.
 SELECT user_id
 FROM "comments"
 GROUP BY user_id;
@@ -40,9 +41,26 @@ GROUP BY u.username;
 
 -- query: show the average comment length per photo 
 --        but only for photos with at least 3 comments
--- NOTE: the HAVING statement is does for aggregates what WHERE does for individual rows
+-- NOTE: the HAVING statement does for aggregates what WHERE does for individual rows
 --       (HAVING always comes *after* GROUP BY)
 SELECT photo_id, ROUND(AVG(LENGTH(contents))) 
 FROM "comments"
 GROUP BY photo_id
 	HAVING COUNT(*) >= 3;
+
+
+-- query: show the users (id and the name) 
+--   			where the user has commented on either of the 1st two photos
+--        and the user has at least two comments on any of these two photos
+SELECT c.user_id, u.username 
+FROM "comments" AS c
+JOIN users AS u
+	ON u.id = c.user_id 
+WHERE c.photo_id IN (1, 2)
+GROUP BY c.user_id, u.username
+	HAVING COUNT(*) >= 2; 
+	
+
+
+
+
