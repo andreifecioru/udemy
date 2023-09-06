@@ -25,7 +25,8 @@ SELECT name, name, country FROM cities;
 
 -- calculated columns (compute population density for each city)
 SELECT 
-    name, population / area AS population_density 
+    name, 
+    population / area AS population_density 
 FROM 
     cities;
 

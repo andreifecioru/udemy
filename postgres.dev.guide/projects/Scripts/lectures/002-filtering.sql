@@ -52,7 +52,16 @@ WHERE
     OR name = 'Sao Paulo';
     
 -- updating records
-UPDATE cities SET population = 39505000 WHERE name = 'Tokyo';
+UPDATE 
+	cities 
+SET 
+	population = 39505000 
+WHERE 
+	name = 'Tokyo';
 
 -- deleting records
-DELETE FROM cities WHERE name = 'Tokyo';
+DELETE FROM 
+	cities 
+WHERE 
+	name = 'Tokyo';
+

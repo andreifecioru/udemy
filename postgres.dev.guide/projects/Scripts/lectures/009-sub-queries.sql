@@ -96,9 +96,9 @@ FROM (
 ) AS r
 
 -- equivalent to the above
-SELECT AVG(r.order_count) as avg_order_per_user
+SELECT AVG(r.order_count) AS avg_order_per_user
 FROM (
-	SELECT o.user_id, COUNT(*) as order_count
+	SELECT o.user_id, COUNT(*) AS order_count
 	FROM orders AS o
 	GROUP BY o.user_id
 ) AS r;

@@ -37,7 +37,12 @@ WHERE
 
 -- this produces the same output as the query above (because we use INNER JOIN)
 -- NOTE: you can combine multiple matching criteria inside an ON statement
-SELECT u.username, c.contents, p.url, c.user_id AS c_user_id, p.user_id AS p_user_id 
+SELECT 
+	u.username, 
+	c.contents, 
+	c.user_id AS c_user_id, 
+	p.url, 
+	p.user_id AS p_user_id 
 FROM "comments" AS c 
 JOIN photos AS p
 	ON p.id = c.photo_id

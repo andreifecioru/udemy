@@ -8,6 +8,6 @@ SELECT usename AS role_name,
     CAST('create database' AS pg_catalog.text)
   ELSE
     CAST('' AS pg_catalog.text)
- END role_attributes
+ END AS role_attributes
 FROM pg_catalog.pg_user
 ORDER BY role_name desc;

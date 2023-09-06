@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;
 
 -- the `id` column is auto-generated (and auto-incremented)
--- NOTE: SERIAL is supported by Postgres. In other SQL envs you would write:
---   id PRIMARY KEY AUTOINCREMENT
+-- NOTE: SERIAL is only supported by Postgres. In other SQL envs you would write:
+--   id INTEGER PRIMARY KEY AUTOINCREMENT
 CREATE TABLE IF NOT EXISTS photoapp.users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) DEFAULT 'john.doe'
@@ -22,11 +22,13 @@ VALUES
     ('dumitru');
     
 -- define a foreign-key (FK) referencing the id col in the users table
--- when deleting a user the photos associated with it are also deleted
+-- when deleting a user, the photos associated with it are also deleted;
 -- other options: 
 --   ON DELETE RESTRICT (default)
+--   ON DELETE NO ACTION (same as above - throws error)
 --   ON DELETE SET NULL
 --   ON DELETE SET DEFAULT
+-- NOTE: the 'many' side of the relationship gets the FK column
 CREATE TABLE IF NOT EXISTS photoapp.photos (
     id SERIAL PRIMARY KEY,
     url VARCHAR(200),
@@ -68,3 +70,4 @@ VALUES
     ('Andrei > Maria: Best photo ever!', 1, 4),
     ('Radu > Dumitru: Nice outfit!', 2, 5),
     ('Andrei > Dumitru: Where did you buy that?', 1, 5);
+    
